@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'KeyedBits' target in the 'KeyedBits' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
