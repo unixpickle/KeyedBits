@@ -52,7 +52,7 @@
 }
 
 - (UInt8)lengthFieldLength {
-	return (valueType >> 5) & 3;
+	return ((valueType >> 5) & 3) + 1;
 }
 
 - (BOOL)isNullTerminated {
@@ -103,6 +103,46 @@ void _TrimIntAndMakeLittleEndian (UInt32 anInt, unsigned char * dest, NSInteger 
 	for (int i = 0; i < trimLength; i++) {
 		UInt8 byteIndex = (bigEndian ? (trimLength - (i + 1)) : i);
 		dest[i] = intBuffer[offset + byteIndex];
+	}
+}
+
+UInt32 _ExpandIntAndMakeNativeEndian (unsigned const char * buffer, NSInteger bufferLength) {
+	UInt32 answer = 0;
+	unsigned char * intBuffer = (unsigned char *)&answer;
+	BOOL bigEndian = _IsBigEndian();
+	NSInteger startIndex = bigEndian ? ((NSInteger)4 - bufferLength) : 0;
+	
+	for (int i = 0; i < bufferLength; i++) {
+		UInt8 charIndex = bigEndian ? (bufferLength - (i + 1)) : i;
+		intBuffer[charIndex + startIndex] = buffer[i];
+	}
+	
+	return answer;
+}
+
+NSInteger KBValueReadBufferWithInfo (UInt8 valueType, NSMutableData * destination, const char * bytes, NSUInteger length) {
+	BOOL isNullTerm = (valueType >> 7) & 1;
+	UInt8 lenLength = ((valueType >> 5) & 3) + 1;
+	if (isNullTerm) {
+		NSInteger i;
+		for (i = 0; i < length; i++) {
+			char byte = bytes[i];
+			if (byte == 0) break;
+			[destination appendBytes:&bytes[i] length:1];
+			if (i + 1 == length) return -1; // no NULL terminator
+		}
+		return i + 1;
+	} else {
+		// read length field, then read buffer
+		if (lenLength > length) {
+			return -1;
+		}
+		UInt32 contLen = _ExpandIntAndMakeNativeEndian((const unsigned char *)bytes, lenLength);
+		if (lenLength + contLen > length) {
+			return -1;
+		}
+		[destination appendBytes:&bytes[lenLength] length:contLen];
+		return lenLength + length;
 	}
 }
 

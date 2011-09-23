@@ -18,7 +18,8 @@
 	switch ((bytes[0] & 7)) {
 		case KBValueTypeUTF8String:
 			return [KBValueString class];
-			break;
+		case KBValueTypeData:
+			return [KBValueData class];
 		default:
 			break;
 	}
@@ -28,6 +29,8 @@
 + (Class)valueClassForObject:(NSObject *)anObject {
 	if ([anObject isKindOfClass:[NSString class]]) {
 		return [KBValueString class];
+	} else if ([anObject isKindOfClass:[NSData class]]) {
+		return [KBValueData class];
 	}
 	return Nil;
 }

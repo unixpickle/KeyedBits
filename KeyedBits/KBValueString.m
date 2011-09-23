@@ -29,7 +29,7 @@ NSString * _KBValueStringReadString (const char * buffer, NSUInteger * len);
 - (id)initWithValueBytes:(const char *)buffer length:(NSUInteger *)lenInOut {
 	if ((self = [super init])) {
 		valueType = buffer[0];
-		if (![self isNullTerminated] || [self lengthFieldLength] != 0) {
+		if (![self isNullTerminated] || [self lengthFieldLength] != 1) {
 			[super dealloc];
 			return nil;
 		}

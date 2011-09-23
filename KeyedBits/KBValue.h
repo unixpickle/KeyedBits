@@ -22,6 +22,8 @@ typedef enum {
 // Length field
 BOOL _IsBigEndian (void);
 void _TrimIntAndMakeLittleEndian (UInt32 anInt, unsigned char * dest, NSInteger trimLength);
+UInt32 _ExpandIntAndMakeNativeEndian (unsigned const char * buffer, NSInteger bufferLength);
+NSInteger KBValueReadBufferWithInfo (UInt8 valueType, NSMutableData * destination, const char * bytes, NSUInteger length);
 // Type field
 UInt8 KBValueTypeFieldLenLenForBytes (NSUInteger numBytes);
 UInt8 KBValueTypeFieldWithInfo (UInt8 lenLength, BOOL nullterm, KBValueTypeNumber typeNumber);

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA3479AA142C065B0077B340 /* KBValueData.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3479A9142C065B0077B340 /* KBValueData.m */; };
 		FA803B49142BE3E80078B1D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA803B48142BE3E80078B1D9 /* Foundation.framework */; };
 		FA803B4C142BE3E80078B1D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B4B142BE3E80078B1D9 /* main.m */; };
 		FA803B50142BE3E80078B1D9 /* KeyedBits.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA803B4F142BE3E80078B1D9 /* KeyedBits.1 */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA3479A8142C065B0077B340 /* KBValueData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueData.h; sourceTree = "<group>"; };
+		FA3479A9142C065B0077B340 /* KBValueData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueData.m; sourceTree = "<group>"; };
 		FA803B44142BE3E80078B1D9 /* KeyedBits */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KeyedBits; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA803B48142BE3E80078B1D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA803B4B142BE3E80078B1D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				FA803B57142BE42F0078B1D9 /* KBValue.m */,
 				FA803B5A142BF8880078B1D9 /* KBValueString.h */,
 				FA803B5B142BF8880078B1D9 /* KBValueString.m */,
+				FA3479A8142C065B0077B340 /* KBValueData.h */,
+				FA3479A9142C065B0077B340 /* KBValueData.m */,
 			);
 			name = KBValue;
 			path = KeyedBits;
@@ -186,6 +191,7 @@
 				FA803B5C142BF8880078B1D9 /* KBValueString.m in Sources */,
 				FA803B5F142BFCF10078B1D9 /* NSObject+KeyedBits.m in Sources */,
 				FA803B62142BFE070078B1D9 /* KBObjectCoder.m in Sources */,
+				FA3479AA142C065B0077B340 /* KBValueData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

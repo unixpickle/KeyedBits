@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KBValueString.h"
+#import "KBValueData.h"
 
 @interface KBObjectCoder : NSObject
 
