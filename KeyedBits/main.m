@@ -13,14 +13,16 @@ void TestString (void);
 void TestData (void);
 void TestArray (void);
 void TestInteger (void);
+void TestFloating (void);
 
 int main (int argc, const char * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
 	TestString();
 	TestData();
-	TestArray();
 	TestInteger();
+	TestFloating();
+	TestArray();
 	
 	[pool drain];
     return 0;
@@ -48,8 +50,11 @@ void TestArray (void) {
 	NSLog(@"%@", decoded);
 	
 	NSArray * mixed = [NSArray arrayWithObjects:[NSNumber numberWithInt:17],
+					   [NSData dataWithBytes:"\x02\x00\x01" length:3],
 												@"Foobar",
-												[NSData dataWithBytes:"\x02\x00\x01" length:3],
+												
+												messages,
+												[NSNumber numberWithDouble:3.1415],
 												nil];
 	encoded = [[mixed keyedBitsValue] encodeValue];
 	decoded = [NSArray objectWithKeyedBitsData:encoded];
@@ -66,5 +71,12 @@ void TestInteger (void) {
 	encoded = [[negative keyedBitsValue] encodeValue];
 	decoded = [NSNumber objectWithKeyedBitsData:encoded];
 	NSLog(@"-1337 = %@", decoded);
+}
+
+void TestFloating (void) {
+	NSNumber * aNumber = [NSNumber numberWithDouble:13.37];
+	NSData * encoded = [[aNumber keyedBitsValue] encodeValue];
+	NSNumber * decoded = [NSNumber objectWithKeyedBitsData:encoded];
+	NSLog(@"13.37 = %@", decoded);
 }
 

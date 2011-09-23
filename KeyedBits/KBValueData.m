@@ -37,11 +37,13 @@
 		valueType = buffer[0];
 		
 		NSMutableData * rawData = [[NSMutableData alloc] init];
-		if (!KBValueReadBufferWithInfo(valueType, rawData, &buffer[1], *lenInOut - 1)) {
+		NSInteger readLength = KBValueReadBufferWithInfo(valueType, rawData, &buffer[1], *lenInOut - 1);
+		if (readLength < 0) {
 			[rawData release];
 			[super dealloc];
 			return nil;
 		}
+		*lenInOut = readLength + 1;
 		
 		valueObject = rawData;
 	}

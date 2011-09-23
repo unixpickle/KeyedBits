@@ -142,7 +142,7 @@ NSInteger KBValueReadBufferWithInfo (UInt8 valueType, NSMutableData * destinatio
 			return -1;
 		}
 		[destination appendBytes:&bytes[lenLength] length:contLen];
-		return lenLength + length;
+		return lenLength + contLen;
 	}
 }
 
