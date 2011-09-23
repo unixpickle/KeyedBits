@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+KeyedBits.h"
 
-int main (int argc, const char * argv[])
-{
-
+int main (int argc, const char * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-
-	// insert code here...
-	NSLog(@"Hello, World!");
-
+	
+	NSData * encoded = [[@"Hello, KeyedBits!" keyedBitsValue] encodeValue];
+	NSString * decoded = [NSString objectWithKeyedBitsData:encoded];
+	NSLog(@"%@", decoded);
+	
 	[pool drain];
     return 0;
 }

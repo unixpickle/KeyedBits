@@ -10,6 +10,10 @@
 		FA803B49142BE3E80078B1D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA803B48142BE3E80078B1D9 /* Foundation.framework */; };
 		FA803B4C142BE3E80078B1D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B4B142BE3E80078B1D9 /* main.m */; };
 		FA803B50142BE3E80078B1D9 /* KeyedBits.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA803B4F142BE3E80078B1D9 /* KeyedBits.1 */; };
+		FA803B58142BE42F0078B1D9 /* KBValue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B57142BE42F0078B1D9 /* KBValue.m */; };
+		FA803B5C142BF8880078B1D9 /* KBValueString.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B5B142BF8880078B1D9 /* KBValueString.m */; };
+		FA803B5F142BFCF10078B1D9 /* NSObject+KeyedBits.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */; };
+		FA803B62142BFE070078B1D9 /* KBObjectCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B61142BFE070078B1D9 /* KBObjectCoder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +33,16 @@
 		FA803B44142BE3E80078B1D9 /* KeyedBits */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KeyedBits; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA803B48142BE3E80078B1D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA803B4B142BE3E80078B1D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FA803B4E142BE3E80078B1D9 /* KeyedBits-Prefix.pch */ = {isa = PBXFileReference; path = "KeyedBits-Prefix.pch"; sourceTree = "<group>"; };
+		FA803B4E142BE3E80078B1D9 /* KeyedBits-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KeyedBits-Prefix.pch"; sourceTree = "<group>"; };
 		FA803B4F142BE3E80078B1D9 /* KeyedBits.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = KeyedBits.1; sourceTree = "<group>"; };
+		FA803B56142BE42F0078B1D9 /* KBValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValue.h; sourceTree = "<group>"; };
+		FA803B57142BE42F0078B1D9 /* KBValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValue.m; sourceTree = "<group>"; };
+		FA803B5A142BF8880078B1D9 /* KBValueString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueString.h; sourceTree = "<group>"; };
+		FA803B5B142BF8880078B1D9 /* KBValueString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueString.m; sourceTree = "<group>"; };
+		FA803B5D142BFCF10078B1D9 /* NSObject+KeyedBits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KeyedBits.h"; sourceTree = "<group>"; };
+		FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KeyedBits.m"; sourceTree = "<group>"; };
+		FA803B60142BFE070078B1D9 /* KBObjectCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBObjectCoder.h; sourceTree = "<group>"; };
+		FA803B61142BFE070078B1D9 /* KBObjectCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBObjectCoder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,7 @@
 		FA803B4A142BE3E80078B1D9 /* KeyedBits */ = {
 			isa = PBXGroup;
 			children = (
+				FA803B59142BF8570078B1D9 /* KBValue */,
 				FA803B4B142BE3E80078B1D9 /* main.m */,
 				FA803B4F142BE3E80078B1D9 /* KeyedBits.1 */,
 				FA803B4D142BE3E80078B1D9 /* Supporting Files */,
@@ -86,6 +99,21 @@
 				FA803B4E142BE3E80078B1D9 /* KeyedBits-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA803B59142BF8570078B1D9 /* KBValue */ = {
+			isa = PBXGroup;
+			children = (
+				FA803B56142BE42F0078B1D9 /* KBValue.h */,
+				FA803B57142BE42F0078B1D9 /* KBValue.m */,
+				FA803B5A142BF8880078B1D9 /* KBValueString.h */,
+				FA803B5B142BF8880078B1D9 /* KBValueString.m */,
+				FA803B60142BFE070078B1D9 /* KBObjectCoder.h */,
+				FA803B61142BFE070078B1D9 /* KBObjectCoder.m */,
+				FA803B5D142BFCF10078B1D9 /* NSObject+KeyedBits.h */,
+				FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */,
+			);
+			name = KBValue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +164,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA803B4C142BE3E80078B1D9 /* main.m in Sources */,
+				FA803B58142BE42F0078B1D9 /* KBValue.m in Sources */,
+				FA803B5C142BF8880078B1D9 /* KBValueString.m in Sources */,
+				FA803B5F142BFCF10078B1D9 /* NSObject+KeyedBits.m in Sources */,
+				FA803B62142BFE070078B1D9 /* KBObjectCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
