@@ -10,20 +10,28 @@
 
 @implementation KBObjectCoder
 
++ (Class)valueClassForType:(UInt8)type {
+	switch ((type & 7)) {
+		case KBValueTypeUTF8String:
+			return [KBValueString class];
+		case KBValueTypeData:
+			return [KBValueData class];
+		case KBValueTypeArray:
+			return [KBValueArray class];
+		case KBValueTypeInteger:
+			return [KBValueInteger class];
+		default:
+			break;
+	}
+	return Nil;
+}
+
 + (Class)valueClassForKeyedData:(NSData *)data {
 	if ([data length] == 0) {
 		return Nil;
 	}
 	const char * bytes = (const char *)[data bytes];
-	switch ((bytes[0] & 7)) {
-		case KBValueTypeUTF8String:
-			return [KBValueString class];
-		case KBValueTypeData:
-			return [KBValueData class];
-		default:
-			break;
-	}
-	return Nil;
+	return [self valueClassForType:bytes[0]];
 }
 
 + (Class)valueClassForObject:(NSObject *)anObject {
@@ -31,6 +39,13 @@
 		return [KBValueString class];
 	} else if ([anObject isKindOfClass:[NSData class]]) {
 		return [KBValueData class];
+	} else if ([anObject isKindOfClass:[NSArray class]]) {
+		return [KBValueArray class];
+	} else if ([anObject isKindOfClass:[NSNumber class]]) {
+		// there are two datatypes for numbers
+		if ([(NSNumber *)anObject isInteger]) {
+			return [KBValueInteger class];
+		}
 	}
 	return Nil;
 }

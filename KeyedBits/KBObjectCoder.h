@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "KBValueString.h"
 #import "KBValueData.h"
+#import "KBValueArray.h"
+#import "KBValueInteger.h"
 
 @interface KBObjectCoder : NSObject
 
++ (Class)valueClassForType:(UInt8)type;
 + (Class)valueClassForKeyedData:(NSData *)data;
 + (Class)valueClassForObject:(NSObject *)anObject;
 
