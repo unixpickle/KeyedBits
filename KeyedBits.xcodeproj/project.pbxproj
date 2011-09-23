@@ -10,6 +10,7 @@
 		FA27AE5D142D1B64005B2D27 /* KBValueArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE5C142D1B64005B2D27 /* KBValueArray.m */; };
 		FA27AE61142D2928005B2D27 /* KBValueInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE60142D2928005B2D27 /* KBValueInteger.m */; };
 		FA27AE65142D29B7005B2D27 /* NSNumber+SInt.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE64142D29B7005B2D27 /* NSNumber+SInt.m */; };
+		FA27AE68142D3488005B2D27 /* KBValueFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE67142D3488005B2D27 /* KBValueFloat.m */; };
 		FA3479AA142C065B0077B340 /* KBValueData.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3479A9142C065B0077B340 /* KBValueData.m */; };
 		FA803B49142BE3E80078B1D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA803B48142BE3E80078B1D9 /* Foundation.framework */; };
 		FA803B4C142BE3E80078B1D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B4B142BE3E80078B1D9 /* main.m */; };
@@ -40,6 +41,8 @@
 		FA27AE60142D2928005B2D27 /* KBValueInteger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueInteger.m; sourceTree = "<group>"; };
 		FA27AE63142D29B7005B2D27 /* NSNumber+SInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SInt.h"; sourceTree = "<group>"; };
 		FA27AE64142D29B7005B2D27 /* NSNumber+SInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SInt.m"; sourceTree = "<group>"; };
+		FA27AE66142D3488005B2D27 /* KBValueFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueFloat.h; sourceTree = "<group>"; };
+		FA27AE67142D3488005B2D27 /* KBValueFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueFloat.m; sourceTree = "<group>"; };
 		FA3479A8142C065B0077B340 /* KBValueData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueData.h; sourceTree = "<group>"; };
 		FA3479A9142C065B0077B340 /* KBValueData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueData.m; sourceTree = "<group>"; };
 		FA803B44142BE3E80078B1D9 /* KeyedBits */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KeyedBits; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +160,8 @@
 				FA27AE5C142D1B64005B2D27 /* KBValueArray.m */,
 				FA27AE5F142D2928005B2D27 /* KBValueInteger.h */,
 				FA27AE60142D2928005B2D27 /* KBValueInteger.m */,
+				FA27AE66142D3488005B2D27 /* KBValueFloat.h */,
+				FA27AE67142D3488005B2D27 /* KBValueFloat.m */,
 			);
 			name = KBValue;
 			path = KeyedBits;
@@ -218,6 +223,7 @@
 				FA27AE5D142D1B64005B2D27 /* KBValueArray.m in Sources */,
 				FA27AE61142D2928005B2D27 /* KBValueInteger.m in Sources */,
 				FA27AE65142D29B7005B2D27 /* NSNumber+SInt.m in Sources */,
+				FA27AE68142D3488005B2D27 /* KBValueFloat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

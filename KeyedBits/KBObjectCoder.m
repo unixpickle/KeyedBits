@@ -20,6 +20,8 @@
 			return [KBValueArray class];
 		case KBValueTypeInteger:
 			return [KBValueInteger class];
+		case KBValueTypeFloating:
+			return [KBValueFloat class];
 		default:
 			break;
 	}
@@ -45,6 +47,8 @@
 		// there are two datatypes for numbers
 		if ([(NSNumber *)anObject isInteger]) {
 			return [KBValueInteger class];
+		} else {
+			return [KBValueFloat class];
 		}
 	}
 	return Nil;
