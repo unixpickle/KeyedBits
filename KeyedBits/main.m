@@ -46,6 +46,15 @@ void TestArray (void) {
 	NSData * encoded = [[messages keyedBitsValue] encodeValue];
 	NSArray * decoded = [NSArray objectWithKeyedBitsData:encoded];
 	NSLog(@"%@", decoded);
+	
+	NSArray * mixed = [NSArray arrayWithObjects:[NSNumber numberWithInt:17],
+												@"Foobar",
+												[NSData dataWithBytes:"\x02\x00\x01" length:3],
+												nil];
+	encoded = [[mixed keyedBitsValue] encodeValue];
+	decoded = [NSArray objectWithKeyedBitsData:encoded];
+	NSLog(@"%@", decoded);
+	NSCAssert([mixed isEqual:decoded], @"Must decode to equal array");
 }
 
 void TestInteger (void) {

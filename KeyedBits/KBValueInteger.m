@@ -35,6 +35,7 @@
 		return nil;
 	}
 	UInt32 number = _ExpandIntAndMakeNativeEndian((const unsigned char *)&buffer[1], 4);
+	*lenInOut = 5;
 	return (self = [self initWithInt32:(SInt32)number]);
 }
 
