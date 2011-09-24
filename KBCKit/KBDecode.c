@@ -121,7 +121,7 @@ static bool _kb_decode_read_value (KBContextRef ctx, uint8_t type, char ** buffe
 		}
 		*buffer = (char *)malloc(length);
 		*buffLen = length;
-		if (!kb_context_read_bytes(ctx, buffer, length)) {
+		if (!kb_context_read_bytes(ctx, *buffer, length)) {
 			free(*buffer);
 			return false;
 		}

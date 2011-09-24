@@ -129,6 +129,7 @@ NSNumber * kb_decode_objc_integer (KBContextRef ctx, uint8_t type) {
 	} else if (sizeof(long long) == sizeof(int64_t)) {
 		return [NSNumber numberWithLongLong:(long long)number];
 	} else {
+		NSLog(@"Warning, no suitable type found.");
 		return nil;
 	}
 }
