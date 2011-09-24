@@ -82,7 +82,8 @@
 	[super encodeToData:theData];
 	char terminator = 0;
 	NSArray * array = [self array];
-	for (NSObject * object in array) {
+	for (int i = 0; i < [array count]; i++) {
+		NSObject * object = [array objectAtIndex:i];
 		KBValue * encoded = [object keyedBitsValue];
 		if (!encoded) {
 			return NO;
