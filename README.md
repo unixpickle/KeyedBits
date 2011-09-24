@@ -25,19 +25,24 @@ Advantages of KeyedBits
 =======================
 
 **Space conservation**
+
 KeyedBits takes heavy advantage of NULL termination, and when needed, length fields. This allows it to efficiently represent data with only one or two bytes of overhead, which is usually a byte or two less than that of JSON. If you are working with large dictionaries or arrays, you will save a noticeable amount of space that you would not when using XML, JSON, or even binary plist.
 
 **Data encoding**
+
 Besides storage conservation, you will notice that KeyedBits allows for the encoding of raw data. This feature comes with the binary data method of archiving, and cannot be achieved in JSON without base64 or likewise. This being said, KeyedBits is a great alternative for network protocols or file formats that need to store image data, or any other form of binary.
 
 **Lossless transformation from object to data, then back to object again**
+
 The KBKit framework provides a one-line interface for encoding any compatible NSObject to and from KeyedBits ```NSData``` objects. Double's do not lose their precision, strings to not lose their UTF8 characters, and data loses absolutely nothing. This makes KeyedBits ideal for any sort of file format or network protocol where dictionaries need to be represented as data.
 
 Disadvantages of KeyedBits
 ==========================
 
 **Lack of support and popularity**
+
 If you search the internet for *KeyedBits*, you will find *Smith Optics' ingenious Pivlock system*. You will not find a single library other than KBKit for encoding and decoding KeyedBits data, nor will you find a specification or documentation. I am currently the only developer of whom I am aware that contributes to the KeyedBits project. That being said, it would be nice if someone would take the time to write an implementation of KeyedBits for another language. The more cross-platform KeyedBits becomes, the more widely used it will be able to be.
 
 **Speed**
+
 Right now, speed is my #1 concern. Keyed bits is around twice as slow as JSON-framework, which is notorious for being slow to begin with. I am currently working on a C implementation of KeyedBits, but even that may not be able to beat some of the top-notch JSON encoders. Honestly, it would be great if anybody who has time would give me a hand in optimizing my code. I am willing to do whatever it takes to bump the speed of encoding/decoding to knock the competition out of the park.
