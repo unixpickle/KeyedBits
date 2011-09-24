@@ -122,13 +122,13 @@ NSNumber * kb_decode_objc_integer (KBContextRef ctx, uint8_t type) {
 	if (!kb_decode_integer(ctx, type, &number)) {
 		return nil;
 	}
-#if INT_MAX == INT64_MAX
-	return [NSNumber numberWithInt:number];
-#elif LONG_MAX == INT64_MAX
-	return [NSNumber numberWithLong:number];
-#elif LONG_LONG_MAX == INT64_MAX
-	return [NSNumber numberWithLongLong:number];
-#endif
+	if (sizeof(int) == sizeof(int64_t)) {
+		return [NSNumber numberWithInt:(int)number];
+	} else if (sizeof(long) == sizeof(int64_t)) {
+		return [NSNumber numberWithLong:(long)number];
+	} else if (sizeof(long long) == sizeof(int64_t)) {
+		return [NSNumber numberWithLongLong:(long long)number];
+	}
 }
 
 NSNumber * kb_decode_objc_double (KBContextRef ctx, uint8_t type) {

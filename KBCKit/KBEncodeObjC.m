@@ -125,25 +125,25 @@ static bool _kb_encode_objc_number_is_integer (NSNumber * number) {
 }
 
 static int32_t _kb_encode_objc_number_sint32 (NSNumber * number) {
-#if INT_MAX == INT32_MAX
-	return [number intValue];
-#elif LONG_MAX == INT32_MAX
-	return [number longValue];
-#elif SHORT_MAX == INT32_MAX
-	return [number shortValue];
-#elif LONG_LONG_MAX == INT32_MAX
-	return [number longLongValue];
-#endif
+	if (sizeof(int) == sizeof(int32_t)) {
+		return (int32_t)[number intValue];
+	} else if (sizeof(long) == sizeof(int32_t)) {
+		return (int32_t)[number longValue];
+	} else if (sizeof(short) == sizeof(int32_t)) {
+		return (int32_t)[number shortValue];
+	} else if (sizeof(long long) == sizeof(int32_t)) {
+		return (int32_t)[number longLongValue];
+	}
 }
 
 static int64_t _kb_encode_objc_number_sint64 (NSNumber * number) {
-#if INT_MAX == INT64_MAX
-	return [number intValue];
-#elif LONG_MAX == INT64_MAX
-	return [number longValue];
-#elif SHORT_MAX == INT64_MAX
-	return [number shortValue];
-#elif LONG_LONG_MAX == INT64_MAX
-	return [number longLongValue];
-#endif
+	if (sizeof(int) == sizeof(int64_t)) {
+		return (int64_t)[number intValue];
+	} else if (sizeof(long) == sizeof(int64_t)) {
+		return (int64_t)[number longValue];
+	} else if (sizeof(short) == sizeof(int64_t)) {
+		return (int64_t)[number shortValue];
+	} else if (sizeof(long long) == sizeof(int64_t)) {
+		return (int64_t)[number longLongValue];
+	}
 }
