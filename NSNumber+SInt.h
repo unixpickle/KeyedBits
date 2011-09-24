@@ -11,7 +11,10 @@
 @interface NSNumber (SInt)
 
 + (NSNumber *)numberWithSInt32:(SInt32)signedInt32;
++ (NSNumber *)numberWithSInt64:(SInt64)signedInt64;
 - (SInt32)SInt32Value;
+- (SInt64)SInt64Value;
+- (BOOL)intNeeds64Bytes;
 - (BOOL)isInteger;
 
 @end

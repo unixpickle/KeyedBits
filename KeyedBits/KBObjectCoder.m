@@ -22,6 +22,10 @@
 			return [KBValueInteger class];
 		case KBValueTypeFloating:
 			return [KBValueFloat class];
+		case KBValueTypeNull:
+			return [KBValueNull class];
+		case KBValueTypeDictionary:
+			return [KBValueDictionary class];
 		default:
 			break;
 	}
@@ -50,6 +54,10 @@
 		} else {
 			return [KBValueFloat class];
 		}
+	} else if ([anObject isKindOfClass:[NSNull class]]) {
+		return [KBValueNull class];
+	} else if ([anObject isKindOfClass:[NSDictionary class]]) {
+		return [KBValueDictionary class];
 	}
 	return Nil;
 }

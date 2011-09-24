@@ -80,5 +80,5 @@ NSString * _KBValueStringReadString (const char * buffer, NSUInteger * len) {
 	
 	NSString * string = [[NSString alloc] initWithData:stringData encoding:NSUTF8StringEncoding];
 	[stringData release];
-	return string;
+	return [string autorelease];
 }

@@ -96,21 +96,21 @@ BOOL _IsBigEndian (void) {
 	else return YES;
 }
 
-void _TrimIntAndMakeLittleEndian (UInt32 anInt, unsigned char * dest, NSInteger trimLength) {
+void _TrimIntAndMakeLittleEndian (UInt64 anInt, unsigned char * dest, NSInteger trimLength) {
 	unsigned char * intBuffer = (unsigned char *)&anInt;
 	BOOL bigEndian = _IsBigEndian();
-	UInt8 offset = (bigEndian ? (4 - trimLength) : 0);
+	UInt8 offset = (bigEndian ? (8 - trimLength) : 0);
 	for (int i = 0; i < trimLength; i++) {
 		UInt8 byteIndex = (bigEndian ? (trimLength - (i + 1)) : i);
 		dest[i] = intBuffer[offset + byteIndex];
 	}
 }
 
-UInt32 _ExpandIntAndMakeNativeEndian (unsigned const char * buffer, NSInteger bufferLength) {
-	UInt32 answer = 0;
+UInt64 _ExpandIntAndMakeNativeEndian (unsigned const char * buffer, NSInteger bufferLength) {
+	UInt64 answer = 0;
 	unsigned char * intBuffer = (unsigned char *)&answer;
 	BOOL bigEndian = _IsBigEndian();
-	NSInteger startIndex = bigEndian ? ((NSInteger)4 - bufferLength) : 0;
+	NSInteger startIndex = bigEndian ? ((NSInteger)8 - bufferLength) : 0;
 	
 	for (int i = 0; i < bufferLength; i++) {
 		UInt8 charIndex = bigEndian ? (bufferLength - (i + 1)) : i;
@@ -137,7 +137,7 @@ NSInteger KBValueReadBufferWithInfo (UInt8 valueType, NSMutableData * destinatio
 		if (lenLength > length) {
 			return -1;
 		}
-		UInt32 contLen = _ExpandIntAndMakeNativeEndian((const unsigned char *)bytes, lenLength);
+		UInt64 contLen = _ExpandIntAndMakeNativeEndian((const unsigned char *)bytes, lenLength);
 		if (lenLength + contLen > length) {
 			return -1;
 		}

@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+KeyedBits.h"
+#import "NSObject+SBJson.h"
 
 void TestString (void);
 void TestData (void);
 void TestArray (void);
 void TestInteger (void);
 void TestFloating (void);
+void TestDictionary (void);
+void Benchmark (void);
 
 int main (int argc, const char * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
@@ -23,6 +26,12 @@ int main (int argc, const char * argv[]) {
 	TestInteger();
 	TestFloating();
 	TestArray();
+	TestDictionary();
+	Benchmark();
+	
+	while (1) {
+		
+	}
 	
 	[pool drain];
     return 0;
@@ -52,8 +61,8 @@ void TestArray (void) {
 	NSArray * mixed = [NSArray arrayWithObjects:[NSNumber numberWithInt:17],
 					   [NSData dataWithBytes:"\x02\x00\x01" length:3],
 												@"Foobar",
-												
 												messages,
+												[NSNull null],
 												[NSNumber numberWithDouble:3.1415],
 												nil];
 	encoded = [[mixed keyedBitsValue] encodeValue];
@@ -80,3 +89,71 @@ void TestFloating (void) {
 	NSLog(@"13.37 = %@", decoded);
 }
 
+void TestDictionary (void) {
+	NSDictionary * dog = [NSDictionary dictionaryWithObjectsAndKeys:@"Binary", @"name", 
+						  @"Goldendoodle", @"breed", nil];
+	NSArray * pets = [NSArray arrayWithObjects:dog, nil];
+	NSDictionary * education = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"High School",
+								[NSNumber numberWithBool:NO], @"College", @"Private", @"High School Type", nil];
+	NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Alex", @"name",
+								 [NSNumber numberWithInt:14], @"age", 
+								 education, @"education", pets, @"pets", nil];
+	NSData * encoded = [[dictionary keyedBitsValue] encodeValue];
+	NSDictionary * decoded = [NSDictionary objectWithKeyedBitsData:encoded];
+	NSLog(@"%@", decoded);
+	NSCAssert([decoded isEqualToDictionary:dictionary], @"Must decode to equal dictionary");
+}
+
+void Benchmark (void) {
+	NSData * benchmarkFile = [NSData dataWithContentsOfFile:@"/Users/alex/Desktop/benchmark.json"];
+	NSString * benchmarkString = [[NSString alloc] initWithData:benchmarkFile encoding:NSUTF8StringEncoding];
+	if (!benchmarkString) {
+		NSLog(@"Failed to read benchmark file.");
+		return;
+	}
+	NSDictionary * benchmark = [benchmarkString JSONValue];
+	[benchmarkString release];
+	
+	if (!benchmark) {
+		NSLog(@"Failed to parse benchmark.");
+		return;
+	}
+	
+	NSInteger keyedBitsSize = 0;
+	NSInteger jsonSize = 0;
+	
+	NSLog(@"Begin benchmark");
+	NSDate * start = [NSDate date];
+	for (int i = 0; i < 200; i++) {
+		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+		NSData * encoded = [[benchmark keyedBitsValue] encodeValue];
+		NSDictionary * decoded = [NSDictionary objectWithKeyedBitsData:encoded];
+		if (!decoded) {
+			NSLog(@"Decode/encode of benchmark failed.");
+			[pool drain];
+			return;
+		}
+		keyedBitsSize = [encoded length];
+		[pool drain];
+	}
+	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
+	
+	NSLog(@"Begin benchmark (JSON framework)");
+	start = [NSDate date];
+	for (int i = 0; i < 200; i++) {
+		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+		NSString * encoded = [benchmark JSONRepresentation];
+		NSDictionary * decoded = [encoded JSONValue];
+		if (!decoded) {
+			NSLog(@"Decode/encode of benchmark failed.");
+			[pool drain];
+			return;
+		}
+		jsonSize = [encoded length];
+		[pool drain];
+	}
+	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
+	
+	NSLog(@"KeyedBits size: %ld", keyedBitsSize);
+	NSLog(@"JSON size: %ld", jsonSize);
+}

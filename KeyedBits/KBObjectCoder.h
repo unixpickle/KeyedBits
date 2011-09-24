@@ -12,6 +12,8 @@
 #import "KBValueArray.h"
 #import "KBValueInteger.h"
 #import "KBValueFloat.h"
+#import "KBValueNull.h"
+#import "KBValueDictionary.h"
 
 @interface KBObjectCoder : NSObject
 

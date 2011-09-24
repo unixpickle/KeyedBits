@@ -14,7 +14,9 @@
 }
 
 - (id)initWithInt32:(SInt32)myInt;
+- (id)initWithInt64:(SInt64)bigInt;
 
 - (SInt32)intValue;
+- (SInt64)int64Value;
 
 @end
