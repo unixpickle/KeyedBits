@@ -10,17 +10,7 @@
 #define KeyedBits_KBEncode_h
 
 #include "KBContext.h"
-
-typedef enum {
-	KBEncodeTypeNumberTerminator = 0,
-	KBEncodeTypeNumberString = 1,
-	KBEncodeTypeNumberArray = 2,
-	KBEncodeTypeNumberDictionary = 3,
-	KBEncodeTypeNumberNull = 4,
-	KBEncodeTypeNumberData = 5,
-	KBEncodeTypeNumberInteger = 6,
-	KBEncodeTypeNumberFloat = 7
-} KBEncodeTypeNumber;
+#include "KBConst.h"
 
 void kb_encode_type (KBContextRef ctx, uint8_t lenLen, uint8_t nullTerm, KBEncodeTypeNumber type);
 

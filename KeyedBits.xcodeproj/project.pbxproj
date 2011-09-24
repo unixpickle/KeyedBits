@@ -37,6 +37,8 @@
 		FACECF43142E2C5800473669 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF42142E2C5800473669 /* KBContext.c */; };
 		FACECF45142E300F00473669 /* KBEncode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF44142E300F00473669 /* KBEncode.c */; };
 		FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF48142E36BB00473669 /* KBEncodeObjC.m */; };
+		FACECF4D142E578A00473669 /* KBDecode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4C142E578A00473669 /* KBDecode.c */; };
+		FACECF50142E5CCF00473669 /* KBDecodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -122,6 +124,11 @@
 		FACECF46142E301600473669 /* KBEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBEncode.h; sourceTree = "<group>"; };
 		FACECF47142E36BB00473669 /* KBEncodeObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBEncodeObjC.h; sourceTree = "<group>"; };
 		FACECF48142E36BB00473669 /* KBEncodeObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBEncodeObjC.m; sourceTree = "<group>"; };
+		FACECF4A142E55FB00473669 /* KBDecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDecode.h; sourceTree = "<group>"; };
+		FACECF4B142E560600473669 /* KBConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBConst.h; sourceTree = "<group>"; };
+		FACECF4C142E578A00473669 /* KBDecode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBDecode.c; sourceTree = "<group>"; };
+		FACECF4E142E5CCF00473669 /* KBDecodeObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDecodeObjC.h; sourceTree = "<group>"; };
+		FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDecodeObjC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,14 +270,27 @@
 		FACECF40142E2B4D00473669 /* KBCKit */ = {
 			isa = PBXGroup;
 			children = (
+				FACECF51142E6FF400473669 /* ObjC */,
+				FACECF4B142E560600473669 /* KBConst.h */,
 				FACECF41142E2B7B00473669 /* KBContext.h */,
 				FACECF42142E2C5800473669 /* KBContext.c */,
 				FACECF46142E301600473669 /* KBEncode.h */,
 				FACECF44142E300F00473669 /* KBEncode.c */,
-				FACECF47142E36BB00473669 /* KBEncodeObjC.h */,
-				FACECF48142E36BB00473669 /* KBEncodeObjC.m */,
+				FACECF4A142E55FB00473669 /* KBDecode.h */,
+				FACECF4C142E578A00473669 /* KBDecode.c */,
 			);
 			path = KBCKit;
+			sourceTree = "<group>";
+		};
+		FACECF51142E6FF400473669 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				FACECF47142E36BB00473669 /* KBEncodeObjC.h */,
+				FACECF48142E36BB00473669 /* KBEncodeObjC.m */,
+				FACECF4E142E5CCF00473669 /* KBDecodeObjC.h */,
+				FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */,
+			);
+			name = ObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +368,8 @@
 				FACECF43142E2C5800473669 /* KBContext.c in Sources */,
 				FACECF45142E300F00473669 /* KBEncode.c in Sources */,
 				FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */,
+				FACECF4D142E578A00473669 /* KBDecode.c in Sources */,
+				FACECF50142E5CCF00473669 /* KBDecodeObjC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

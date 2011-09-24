@@ -10,6 +10,7 @@
 #import "NSObject+KeyedBits.h"
 #import "NSObject+SBJson.h"
 #import "KBEncodeObjC.h"
+#import "KBDecodeObjC.h"
 
 void TestString (void);
 void TestData (void);
@@ -18,6 +19,7 @@ void TestInteger (void);
 void TestFloating (void);
 void TestDictionary (void);
 void TestCDictionary (void);
+void TestCLargeData (void);
 void Benchmark (void);
 
 int main (int argc, const char * argv[]) {
@@ -33,6 +35,11 @@ int main (int argc, const char * argv[]) {
 	Benchmark();
 	
 	[pool drain];
+	
+	while (true) {
+		sleep(1);
+	}
+	
     return 0;
 }
 
@@ -113,9 +120,23 @@ void TestCDictionary (void) {
 								 [NSNumber numberWithInt:14], @"age", 
 								 education, @"education", pets, @"pets", nil];
 	NSData * encoded = kb_encode_full(dictionary);
-	NSDictionary * decoded = [NSDictionary objectWithKeyedBitsData:encoded];
+	NSDictionary * decoded = (NSDictionary *)kb_decode_full(encoded);
 	NSLog(@"%@", decoded);
 	NSCAssert([decoded isEqualToDictionary:dictionary], @"Must decode to equal dictionary");
+}
+
+void TestCLargeData (void) {
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	NSMutableData * data = [[NSMutableData alloc] init];
+	for (int i = 0; i < 5000000; i++) {
+		[data appendBytes:&i length:1];
+	}
+	NSDictionary * dictionary = [NSDictionary dictionaryWithObject:data forKey:@"BigData"];
+	NSData * encoded = kb_encode_full(dictionary);
+	NSDictionary * decoded = (NSDictionary *)kb_decode_full(encoded);
+	NSCAssert([[decoded objectForKey:@"BigData"] isEqualToData:data], @"Must decode to equal dictionary");
+	[data release];
+	[pool drain];
 }
 
 void Benchmark (void) {
@@ -140,24 +161,8 @@ void Benchmark (void) {
 	NSInteger keyedBitsSize = 0;
 	NSInteger jsonSize = 0;
 	
-	NSLog(@"Begin benchmark (KBCKit+KBKit)");
-	NSDate * start = [NSDate date];
-	for (int i = 0; i < 200; i++) {
-		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-		NSData * encoded = kb_encode_full(benchmark);
-		NSDictionary * decoded = [NSDictionary objectWithKeyedBitsData:encoded];
-		if (!decoded) {
-			NSLog(@"Decode/encode of benchmark failed.");
-			[pool drain];
-			return;
-		}
-		keyedBitsSize = [encoded length];
-		[pool drain];
-	}
-	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
-	
 	NSLog(@"Begin benchmark (JSON framework)");
-	start = [NSDate date];
+	NSDate * start = [NSDate date];
 	for (int i = 0; i < 200; i++) {
 		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 		NSString * encoded = [benchmark JSONRepresentation];
@@ -168,6 +173,22 @@ void Benchmark (void) {
 			return;
 		}
 		jsonSize = [encoded length];
+		[pool drain];
+	}
+	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
+	
+	NSLog(@"Begin benchmark (KBCKit+KBKit)");
+	start = [NSDate date];
+	for (int i = 0; i < 200; i++) {
+		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+		NSData * encoded = kb_encode_full(benchmark);
+		NSDictionary * decoded = (NSDictionary *)kb_decode_full(encoded);
+		if (!decoded) {
+			NSLog(@"Decode/encode of benchmark failed.");
+			[pool drain];
+			return;
+		}
+		keyedBitsSize = [encoded length];
 		[pool drain];
 	}
 	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
