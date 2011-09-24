@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+KeyedBits.h"
 #import "NSObject+SBJson.h"
+#import "KBEncodeObjC.h"
 
 void TestString (void);
 void TestData (void);
@@ -16,6 +17,7 @@ void TestArray (void);
 void TestInteger (void);
 void TestFloating (void);
 void TestDictionary (void);
+void TestCDictionary (void);
 void Benchmark (void);
 
 int main (int argc, const char * argv[]) {
@@ -27,11 +29,8 @@ int main (int argc, const char * argv[]) {
 	TestFloating();
 	TestArray();
 	TestDictionary();
+	TestCDictionary();
 	Benchmark();
-	
-	while (1) {
-		
-	}
 	
 	[pool drain];
     return 0;
@@ -104,6 +103,21 @@ void TestDictionary (void) {
 	NSCAssert([decoded isEqualToDictionary:dictionary], @"Must decode to equal dictionary");
 }
 
+void TestCDictionary (void) {
+	NSDictionary * dog = [NSDictionary dictionaryWithObjectsAndKeys:@"Binary", @"name", 
+						  @"Goldendoodle", @"breed", nil];
+	NSArray * pets = [NSArray arrayWithObjects:dog, nil];
+	NSDictionary * education = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"High School",
+								[NSNumber numberWithBool:NO], @"College", @"Private", @"High School Type", nil];
+	NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Alex", @"name",
+								 [NSNumber numberWithInt:14], @"age", 
+								 education, @"education", pets, @"pets", nil];
+	NSData * encoded = kb_encode_full(dictionary);
+	NSDictionary * decoded = [NSDictionary objectWithKeyedBitsData:encoded];
+	NSLog(@"%@", decoded);
+	NSCAssert([decoded isEqualToDictionary:dictionary], @"Must decode to equal dictionary");
+}
+
 void Benchmark (void) {
 	NSData * benchmarkFile = [NSData dataWithContentsOfFile:@"./benchmark.json"];
 	if (!benchmarkFile) {
@@ -126,11 +140,11 @@ void Benchmark (void) {
 	NSInteger keyedBitsSize = 0;
 	NSInteger jsonSize = 0;
 	
-	NSLog(@"Begin benchmark");
+	NSLog(@"Begin benchmark (KBCKit+KBKit)");
 	NSDate * start = [NSDate date];
 	for (int i = 0; i < 200; i++) {
 		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-		NSData * encoded = [[benchmark keyedBitsValue] encodeValue];
+		NSData * encoded = kb_encode_full(benchmark);
 		NSDictionary * decoded = [NSDictionary objectWithKeyedBitsData:encoded];
 		if (!decoded) {
 			NSLog(@"Decode/encode of benchmark failed.");

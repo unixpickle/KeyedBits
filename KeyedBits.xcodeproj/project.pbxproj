@@ -34,6 +34,9 @@
 		FACECF3D142E1E9D00473669 /* KBValueString.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF2F142E1E9D00473669 /* KBValueString.m */; };
 		FACECF3E142E1E9D00473669 /* NSObject+KeyedBits.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF31142E1E9D00473669 /* NSObject+KeyedBits.m */; };
 		FACECF3F142E1E9D00473669 /* NSNumber+SInt.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF34142E1E9D00473669 /* NSNumber+SInt.m */; };
+		FACECF43142E2C5800473669 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF42142E2C5800473669 /* KBContext.c */; };
+		FACECF45142E300F00473669 /* KBEncode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF44142E300F00473669 /* KBEncode.c */; };
+		FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF48142E36BB00473669 /* KBEncodeObjC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -113,6 +116,12 @@
 		FACECF31142E1E9D00473669 /* NSObject+KeyedBits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KeyedBits.m"; sourceTree = "<group>"; };
 		FACECF33142E1E9D00473669 /* NSNumber+SInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SInt.h"; sourceTree = "<group>"; };
 		FACECF34142E1E9D00473669 /* NSNumber+SInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SInt.m"; sourceTree = "<group>"; };
+		FACECF41142E2B7B00473669 /* KBContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBContext.h; sourceTree = "<group>"; };
+		FACECF42142E2C5800473669 /* KBContext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBContext.c; sourceTree = "<group>"; };
+		FACECF44142E300F00473669 /* KBEncode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBEncode.c; sourceTree = "<group>"; };
+		FACECF46142E301600473669 /* KBEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBEncode.h; sourceTree = "<group>"; };
+		FACECF47142E36BB00473669 /* KBEncodeObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBEncodeObjC.h; sourceTree = "<group>"; };
+		FACECF48142E36BB00473669 /* KBEncodeObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBEncodeObjC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +171,7 @@
 		FA803B39142BE3E80078B1D9 = {
 			isa = PBXGroup;
 			children = (
+				FACECF40142E2B4D00473669 /* KBCKit */,
 				FACECF1C142E1E9D00473669 /* KBKit */,
 				FA27AE72142D51DA005B2D27 /* JSON */,
 				FA803B4A142BE3E80078B1D9 /* KeyedBits */,
@@ -250,6 +260,19 @@
 			path = Number;
 			sourceTree = "<group>";
 		};
+		FACECF40142E2B4D00473669 /* KBCKit */ = {
+			isa = PBXGroup;
+			children = (
+				FACECF41142E2B7B00473669 /* KBContext.h */,
+				FACECF42142E2C5800473669 /* KBContext.c */,
+				FACECF46142E301600473669 /* KBEncode.h */,
+				FACECF44142E300F00473669 /* KBEncode.c */,
+				FACECF47142E36BB00473669 /* KBEncodeObjC.h */,
+				FACECF48142E36BB00473669 /* KBEncodeObjC.m */,
+			);
+			path = KBCKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,6 +345,9 @@
 				FACECF3D142E1E9D00473669 /* KBValueString.m in Sources */,
 				FACECF3E142E1E9D00473669 /* NSObject+KeyedBits.m in Sources */,
 				FACECF3F142E1E9D00473669 /* NSNumber+SInt.m in Sources */,
+				FACECF43142E2C5800473669 /* KBContext.c in Sources */,
+				FACECF45142E300F00473669 /* KBEncode.c in Sources */,
+				FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
