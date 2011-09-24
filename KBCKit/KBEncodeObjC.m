@@ -133,6 +133,8 @@ static int32_t _kb_encode_objc_number_sint32 (NSNumber * number) {
 		return (int32_t)[number shortValue];
 	} else if (sizeof(long long) == sizeof(int32_t)) {
 		return (int32_t)[number longLongValue];
+	} else {
+		return 0;
 	}
 }
 
@@ -145,5 +147,7 @@ static int64_t _kb_encode_objc_number_sint64 (NSNumber * number) {
 		return (int64_t)[number shortValue];
 	} else if (sizeof(long long) == sizeof(int64_t)) {
 		return (int64_t)[number longLongValue];
+	} else {
+		return 0;
 	}
 }
