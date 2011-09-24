@@ -105,7 +105,11 @@ void TestDictionary (void) {
 }
 
 void Benchmark (void) {
-	NSData * benchmarkFile = [NSData dataWithContentsOfFile:@"/Users/alex/Desktop/benchmark.json"];
+	NSData * benchmarkFile = [NSData dataWithContentsOfFile:@"./benchmark.json"];
+	if (!benchmarkFile) {
+		NSLog(@"Failed to read benchmark file.");
+		return;
+	}
 	NSString * benchmarkString = [[NSString alloc] initWithData:benchmarkFile encoding:NSUTF8StringEncoding];
 	if (!benchmarkString) {
 		NSLog(@"Failed to read benchmark file.");

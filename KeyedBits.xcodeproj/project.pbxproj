@@ -33,6 +33,7 @@
 		FA803B5C142BF8880078B1D9 /* KBValueString.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B5B142BF8880078B1D9 /* KBValueString.m */; };
 		FA803B5F142BFCF10078B1D9 /* NSObject+KeyedBits.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */; };
 		FA803B62142BFE070078B1D9 /* KBObjectCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B61142BFE070078B1D9 /* KBObjectCoder.m */; };
+		FACECF15142E17CA00473669 /* benchmark.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = FACECF12142E179400473669 /* benchmark.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,16 @@
 				FA803B50142BE3E80078B1D9 /* KeyedBits.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		FACECF14142E17BE00473669 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				FACECF15142E17CA00473669 /* benchmark.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -101,6 +112,7 @@
 		FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KeyedBits.m"; sourceTree = "<group>"; };
 		FA803B60142BFE070078B1D9 /* KBObjectCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBObjectCoder.h; sourceTree = "<group>"; };
 		FA803B61142BFE070078B1D9 /* KBObjectCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBObjectCoder.m; sourceTree = "<group>"; };
+		FACECF12142E179400473669 /* benchmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = benchmark.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +230,7 @@
 		FA803B4D142BE3E80078B1D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FACECF12142E179400473669 /* benchmark.json */,
 				FA803B4E142BE3E80078B1D9 /* KeyedBits-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -257,6 +270,7 @@
 				FA803B40142BE3E80078B1D9 /* Sources */,
 				FA803B41142BE3E80078B1D9 /* Frameworks */,
 				FA803B42142BE3E80078B1D9 /* CopyFiles */,
+				FACECF14142E17BE00473669 /* CopyFiles */,
 			);
 			buildRules = (
 			);
