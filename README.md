@@ -17,14 +17,14 @@ Integers use the *length length* field in a decisive way. Since integers are alw
 KBKit
 =====
 
-KBKit is my Objective-C implementation of KeyedBits. It can be found in the KBKit directory in the project root. KBCKit uses the Object Oriented programming model to its advantage, with a base value class called *KBValue*. This class is then subclassed by different classes designed for different data types.
+*KBKit* is my Objective-C implementation of KeyedBits. It can be found in the KBKit directory in the project root. *KBKit* uses the Object Oriented programming model to its advantage, with a base value class called *KBValue*. This class is then subclassed by different classes designed for different data types.
 
 KBCKit
 ======
 
 *KBCKit* is a C framework for encoding and decoding KeyedBits data. Alone, KBCKit is someone worthless, not returning any data structures, but instead requiring the user to perform a lot of high-level decoding manually. Fortunately for you, *KBCKit* comes packed with an Objective-C wrapper (see *KBEncodeObjC.h* and *KBDecodeObjC.h*). Using these wrappers, you can encode any dictionary, array, or KeyedBits compatible object with the ```kb_encode_full(NSObject * anObject)``` function. Likewise, you can decode using ```kb_decode_full(NSData * data)```.
 
-But why would you use *KBCKit* over the existing, easy to use, *KBKit*? Performance. *KBCKit* is generally ~4 times faster than *KBKit*. This is because, unlike *KBKit*, *KBCKit* uses in-house data structures for concatenating data, reading from buffers, encoding integers, etc. In fact, *KBCKit* is roughly two times faster than *JSONKit*, making KeyedBits a great alternative to storing your data with JSON.
+But why would you use *KBCKit* over the existing, easy to use, *KBKit*? Performance. *KBCKit* is generally ~4 times faster than *KBKit*. This is because, unlike *KBKit*, *KBCKit* uses in-house data structures for concatenating data, reading from buffers, encoding integers, etc. In fact, *KBCKit* is roughly two times faster than *JSON-framework*, making KeyedBits a great alternative to storing your data with JSON.
 
 Benchmark
 =========
