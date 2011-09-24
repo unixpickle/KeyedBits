@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA27AE5D142D1B64005B2D27 /* KBValueArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE5C142D1B64005B2D27 /* KBValueArray.m */; };
-		FA27AE61142D2928005B2D27 /* KBValueInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE60142D2928005B2D27 /* KBValueInteger.m */; };
-		FA27AE65142D29B7005B2D27 /* NSNumber+SInt.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE64142D29B7005B2D27 /* NSNumber+SInt.m */; };
-		FA27AE68142D3488005B2D27 /* KBValueFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE67142D3488005B2D27 /* KBValueFloat.m */; };
-		FA27AE6E142D3A87005B2D27 /* KBValueNull.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE6D142D3A87005B2D27 /* KBValueNull.m */; };
-		FA27AE71142D4354005B2D27 /* KBValueDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE70142D4354005B2D27 /* KBValueDictionary.m */; };
 		FA27AE8C142D51DA005B2D27 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE74142D51DA005B2D27 /* NSObject+SBJson.m */; };
 		FA27AE8D142D51DA005B2D27 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE77142D51DA005B2D27 /* SBJsonParser.m */; };
 		FA27AE8E142D51DA005B2D27 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE79142D51DA005B2D27 /* SBJsonStreamParser.m */; };
@@ -25,15 +19,21 @@
 		FA27AE95142D51DA005B2D27 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE87142D51DA005B2D27 /* SBJsonTokeniser.m */; };
 		FA27AE96142D51DA005B2D27 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE89142D51DA005B2D27 /* SBJsonUTF8Stream.m */; };
 		FA27AE97142D51DA005B2D27 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE8B142D51DA005B2D27 /* SBJsonWriter.m */; };
-		FA3479AA142C065B0077B340 /* KBValueData.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3479A9142C065B0077B340 /* KBValueData.m */; };
 		FA803B49142BE3E80078B1D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA803B48142BE3E80078B1D9 /* Foundation.framework */; };
 		FA803B4C142BE3E80078B1D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B4B142BE3E80078B1D9 /* main.m */; };
 		FA803B50142BE3E80078B1D9 /* KeyedBits.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA803B4F142BE3E80078B1D9 /* KeyedBits.1 */; };
-		FA803B58142BE42F0078B1D9 /* KBValue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B57142BE42F0078B1D9 /* KBValue.m */; };
-		FA803B5C142BF8880078B1D9 /* KBValueString.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B5B142BF8880078B1D9 /* KBValueString.m */; };
-		FA803B5F142BFCF10078B1D9 /* NSObject+KeyedBits.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */; };
-		FA803B62142BFE070078B1D9 /* KBObjectCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA803B61142BFE070078B1D9 /* KBObjectCoder.m */; };
 		FACECF15142E17CA00473669 /* benchmark.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = FACECF12142E179400473669 /* benchmark.json */; };
+		FACECF35142E1E9D00473669 /* KBObjectCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF1E142E1E9D00473669 /* KBObjectCoder.m */; };
+		FACECF36142E1E9D00473669 /* KBValue.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF21142E1E9D00473669 /* KBValue.m */; };
+		FACECF37142E1E9D00473669 /* KBValueArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF23142E1E9D00473669 /* KBValueArray.m */; };
+		FACECF38142E1E9D00473669 /* KBValueData.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF25142E1E9D00473669 /* KBValueData.m */; };
+		FACECF39142E1E9D00473669 /* KBValueDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF27142E1E9D00473669 /* KBValueDictionary.m */; };
+		FACECF3A142E1E9D00473669 /* KBValueFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF29142E1E9D00473669 /* KBValueFloat.m */; };
+		FACECF3B142E1E9D00473669 /* KBValueInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF2B142E1E9D00473669 /* KBValueInteger.m */; };
+		FACECF3C142E1E9D00473669 /* KBValueNull.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF2D142E1E9D00473669 /* KBValueNull.m */; };
+		FACECF3D142E1E9D00473669 /* KBValueString.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF2F142E1E9D00473669 /* KBValueString.m */; };
+		FACECF3E142E1E9D00473669 /* NSObject+KeyedBits.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF31142E1E9D00473669 /* NSObject+KeyedBits.m */; };
+		FACECF3F142E1E9D00473669 /* NSNumber+SInt.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF34142E1E9D00473669 /* NSNumber+SInt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,18 +60,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FA27AE5B142D1B64005B2D27 /* KBValueArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueArray.h; sourceTree = "<group>"; };
-		FA27AE5C142D1B64005B2D27 /* KBValueArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueArray.m; sourceTree = "<group>"; };
-		FA27AE5F142D2928005B2D27 /* KBValueInteger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueInteger.h; sourceTree = "<group>"; };
-		FA27AE60142D2928005B2D27 /* KBValueInteger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueInteger.m; sourceTree = "<group>"; };
-		FA27AE63142D29B7005B2D27 /* NSNumber+SInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SInt.h"; sourceTree = "<group>"; };
-		FA27AE64142D29B7005B2D27 /* NSNumber+SInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SInt.m"; sourceTree = "<group>"; };
-		FA27AE66142D3488005B2D27 /* KBValueFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueFloat.h; sourceTree = "<group>"; };
-		FA27AE67142D3488005B2D27 /* KBValueFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueFloat.m; sourceTree = "<group>"; };
-		FA27AE6C142D3A87005B2D27 /* KBValueNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueNull.h; sourceTree = "<group>"; };
-		FA27AE6D142D3A87005B2D27 /* KBValueNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueNull.m; sourceTree = "<group>"; };
-		FA27AE6F142D4354005B2D27 /* KBValueDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueDictionary.h; sourceTree = "<group>"; };
-		FA27AE70142D4354005B2D27 /* KBValueDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueDictionary.m; sourceTree = "<group>"; };
 		FA27AE73142D51DA005B2D27 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		FA27AE74142D51DA005B2D27 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		FA27AE75142D51DA005B2D27 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -97,22 +85,34 @@
 		FA27AE89142D51DA005B2D27 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		FA27AE8A142D51DA005B2D27 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		FA27AE8B142D51DA005B2D27 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		FA3479A8142C065B0077B340 /* KBValueData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueData.h; sourceTree = "<group>"; };
-		FA3479A9142C065B0077B340 /* KBValueData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueData.m; sourceTree = "<group>"; };
 		FA803B44142BE3E80078B1D9 /* KeyedBits */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KeyedBits; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA803B48142BE3E80078B1D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA803B4B142BE3E80078B1D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA803B4E142BE3E80078B1D9 /* KeyedBits-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KeyedBits-Prefix.pch"; sourceTree = "<group>"; };
 		FA803B4F142BE3E80078B1D9 /* KeyedBits.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = KeyedBits.1; sourceTree = "<group>"; };
-		FA803B56142BE42F0078B1D9 /* KBValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValue.h; sourceTree = "<group>"; };
-		FA803B57142BE42F0078B1D9 /* KBValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValue.m; sourceTree = "<group>"; };
-		FA803B5A142BF8880078B1D9 /* KBValueString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueString.h; sourceTree = "<group>"; };
-		FA803B5B142BF8880078B1D9 /* KBValueString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueString.m; sourceTree = "<group>"; };
-		FA803B5D142BFCF10078B1D9 /* NSObject+KeyedBits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KeyedBits.h"; sourceTree = "<group>"; };
-		FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KeyedBits.m"; sourceTree = "<group>"; };
-		FA803B60142BFE070078B1D9 /* KBObjectCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBObjectCoder.h; sourceTree = "<group>"; };
-		FA803B61142BFE070078B1D9 /* KBObjectCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBObjectCoder.m; sourceTree = "<group>"; };
 		FACECF12142E179400473669 /* benchmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = benchmark.json; sourceTree = "<group>"; };
+		FACECF1D142E1E9D00473669 /* KBObjectCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBObjectCoder.h; sourceTree = "<group>"; };
+		FACECF1E142E1E9D00473669 /* KBObjectCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBObjectCoder.m; sourceTree = "<group>"; };
+		FACECF20142E1E9D00473669 /* KBValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValue.h; sourceTree = "<group>"; };
+		FACECF21142E1E9D00473669 /* KBValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValue.m; sourceTree = "<group>"; };
+		FACECF22142E1E9D00473669 /* KBValueArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueArray.h; sourceTree = "<group>"; };
+		FACECF23142E1E9D00473669 /* KBValueArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueArray.m; sourceTree = "<group>"; };
+		FACECF24142E1E9D00473669 /* KBValueData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueData.h; sourceTree = "<group>"; };
+		FACECF25142E1E9D00473669 /* KBValueData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueData.m; sourceTree = "<group>"; };
+		FACECF26142E1E9D00473669 /* KBValueDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueDictionary.h; sourceTree = "<group>"; };
+		FACECF27142E1E9D00473669 /* KBValueDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueDictionary.m; sourceTree = "<group>"; };
+		FACECF28142E1E9D00473669 /* KBValueFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueFloat.h; sourceTree = "<group>"; };
+		FACECF29142E1E9D00473669 /* KBValueFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueFloat.m; sourceTree = "<group>"; };
+		FACECF2A142E1E9D00473669 /* KBValueInteger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueInteger.h; sourceTree = "<group>"; };
+		FACECF2B142E1E9D00473669 /* KBValueInteger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueInteger.m; sourceTree = "<group>"; };
+		FACECF2C142E1E9D00473669 /* KBValueNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueNull.h; sourceTree = "<group>"; };
+		FACECF2D142E1E9D00473669 /* KBValueNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueNull.m; sourceTree = "<group>"; };
+		FACECF2E142E1E9D00473669 /* KBValueString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBValueString.h; sourceTree = "<group>"; };
+		FACECF2F142E1E9D00473669 /* KBValueString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBValueString.m; sourceTree = "<group>"; };
+		FACECF30142E1E9D00473669 /* NSObject+KeyedBits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KeyedBits.h"; sourceTree = "<group>"; };
+		FACECF31142E1E9D00473669 /* NSObject+KeyedBits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KeyedBits.m"; sourceTree = "<group>"; };
+		FACECF33142E1E9D00473669 /* NSNumber+SInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SInt.h"; sourceTree = "<group>"; };
+		FACECF34142E1E9D00473669 /* NSNumber+SInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SInt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,15 +127,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA27AE62142D29A8005B2D27 /* NSNumber */ = {
-			isa = PBXGroup;
-			children = (
-				FA27AE63142D29B7005B2D27 /* NSNumber+SInt.h */,
-				FA27AE64142D29B7005B2D27 /* NSNumber+SInt.m */,
-			);
-			name = NSNumber;
-			sourceTree = "<group>";
-		};
 		FA27AE72142D51DA005B2D27 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,33 +159,11 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		FA3479A5142C05DF0077B340 /* Encoding */ = {
-			isa = PBXGroup;
-			children = (
-				FA803B60142BFE070078B1D9 /* KBObjectCoder.h */,
-				FA803B61142BFE070078B1D9 /* KBObjectCoder.m */,
-				FA803B5D142BFCF10078B1D9 /* NSObject+KeyedBits.h */,
-				FA803B5E142BFCF10078B1D9 /* NSObject+KeyedBits.m */,
-			);
-			name = Encoding;
-			path = KeyedBits;
-			sourceTree = "<group>";
-		};
-		FA3479A7142C05EF0077B340 /* KBKit */ = {
-			isa = PBXGroup;
-			children = (
-				FA27AE62142D29A8005B2D27 /* NSNumber */,
-				FA803B59142BF8570078B1D9 /* KBValue */,
-				FA3479A5142C05DF0077B340 /* Encoding */,
-			);
-			name = KBKit;
-			sourceTree = "<group>";
-		};
 		FA803B39142BE3E80078B1D9 = {
 			isa = PBXGroup;
 			children = (
+				FACECF1C142E1E9D00473669 /* KBKit */,
 				FA27AE72142D51DA005B2D27 /* JSON */,
-				FA3479A7142C05EF0077B340 /* KBKit */,
 				FA803B4A142BE3E80078B1D9 /* KeyedBits */,
 				FA803B47142BE3E80078B1D9 /* Frameworks */,
 				FA803B45142BE3E80078B1D9 /* Products */,
@@ -236,28 +205,49 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FA803B59142BF8570078B1D9 /* KBValue */ = {
+		FACECF1C142E1E9D00473669 /* KBKit */ = {
 			isa = PBXGroup;
 			children = (
-				FA803B56142BE42F0078B1D9 /* KBValue.h */,
-				FA803B57142BE42F0078B1D9 /* KBValue.m */,
-				FA803B5A142BF8880078B1D9 /* KBValueString.h */,
-				FA803B5B142BF8880078B1D9 /* KBValueString.m */,
-				FA3479A8142C065B0077B340 /* KBValueData.h */,
-				FA3479A9142C065B0077B340 /* KBValueData.m */,
-				FA27AE5B142D1B64005B2D27 /* KBValueArray.h */,
-				FA27AE5C142D1B64005B2D27 /* KBValueArray.m */,
-				FA27AE5F142D2928005B2D27 /* KBValueInteger.h */,
-				FA27AE60142D2928005B2D27 /* KBValueInteger.m */,
-				FA27AE66142D3488005B2D27 /* KBValueFloat.h */,
-				FA27AE67142D3488005B2D27 /* KBValueFloat.m */,
-				FA27AE6C142D3A87005B2D27 /* KBValueNull.h */,
-				FA27AE6D142D3A87005B2D27 /* KBValueNull.m */,
-				FA27AE6F142D4354005B2D27 /* KBValueDictionary.h */,
-				FA27AE70142D4354005B2D27 /* KBValueDictionary.m */,
+				FACECF32142E1E9D00473669 /* Number */,
+				FACECF1F142E1E9D00473669 /* KBValue */,
+				FACECF1D142E1E9D00473669 /* KBObjectCoder.h */,
+				FACECF1E142E1E9D00473669 /* KBObjectCoder.m */,
+				FACECF30142E1E9D00473669 /* NSObject+KeyedBits.h */,
+				FACECF31142E1E9D00473669 /* NSObject+KeyedBits.m */,
 			);
-			name = KBValue;
-			path = KeyedBits;
+			path = KBKit;
+			sourceTree = "<group>";
+		};
+		FACECF1F142E1E9D00473669 /* KBValue */ = {
+			isa = PBXGroup;
+			children = (
+				FACECF20142E1E9D00473669 /* KBValue.h */,
+				FACECF21142E1E9D00473669 /* KBValue.m */,
+				FACECF22142E1E9D00473669 /* KBValueArray.h */,
+				FACECF23142E1E9D00473669 /* KBValueArray.m */,
+				FACECF24142E1E9D00473669 /* KBValueData.h */,
+				FACECF25142E1E9D00473669 /* KBValueData.m */,
+				FACECF26142E1E9D00473669 /* KBValueDictionary.h */,
+				FACECF27142E1E9D00473669 /* KBValueDictionary.m */,
+				FACECF28142E1E9D00473669 /* KBValueFloat.h */,
+				FACECF29142E1E9D00473669 /* KBValueFloat.m */,
+				FACECF2A142E1E9D00473669 /* KBValueInteger.h */,
+				FACECF2B142E1E9D00473669 /* KBValueInteger.m */,
+				FACECF2C142E1E9D00473669 /* KBValueNull.h */,
+				FACECF2D142E1E9D00473669 /* KBValueNull.m */,
+				FACECF2E142E1E9D00473669 /* KBValueString.h */,
+				FACECF2F142E1E9D00473669 /* KBValueString.m */,
+			);
+			path = KBValue;
+			sourceTree = "<group>";
+		};
+		FACECF32142E1E9D00473669 /* Number */ = {
+			isa = PBXGroup;
+			children = (
+				FACECF33142E1E9D00473669 /* NSNumber+SInt.h */,
+				FACECF34142E1E9D00473669 /* NSNumber+SInt.m */,
+			);
+			path = Number;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,17 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA803B4C142BE3E80078B1D9 /* main.m in Sources */,
-				FA803B58142BE42F0078B1D9 /* KBValue.m in Sources */,
-				FA803B5C142BF8880078B1D9 /* KBValueString.m in Sources */,
-				FA803B5F142BFCF10078B1D9 /* NSObject+KeyedBits.m in Sources */,
-				FA803B62142BFE070078B1D9 /* KBObjectCoder.m in Sources */,
-				FA3479AA142C065B0077B340 /* KBValueData.m in Sources */,
-				FA27AE5D142D1B64005B2D27 /* KBValueArray.m in Sources */,
-				FA27AE61142D2928005B2D27 /* KBValueInteger.m in Sources */,
-				FA27AE65142D29B7005B2D27 /* NSNumber+SInt.m in Sources */,
-				FA27AE68142D3488005B2D27 /* KBValueFloat.m in Sources */,
-				FA27AE6E142D3A87005B2D27 /* KBValueNull.m in Sources */,
-				FA27AE71142D4354005B2D27 /* KBValueDictionary.m in Sources */,
 				FA27AE8C142D51DA005B2D27 /* NSObject+SBJson.m in Sources */,
 				FA27AE8D142D51DA005B2D27 /* SBJsonParser.m in Sources */,
 				FA27AE8E142D51DA005B2D27 /* SBJsonStreamParser.m in Sources */,
@@ -332,6 +311,17 @@
 				FA27AE95142D51DA005B2D27 /* SBJsonTokeniser.m in Sources */,
 				FA27AE96142D51DA005B2D27 /* SBJsonUTF8Stream.m in Sources */,
 				FA27AE97142D51DA005B2D27 /* SBJsonWriter.m in Sources */,
+				FACECF35142E1E9D00473669 /* KBObjectCoder.m in Sources */,
+				FACECF36142E1E9D00473669 /* KBValue.m in Sources */,
+				FACECF37142E1E9D00473669 /* KBValueArray.m in Sources */,
+				FACECF38142E1E9D00473669 /* KBValueData.m in Sources */,
+				FACECF39142E1E9D00473669 /* KBValueDictionary.m in Sources */,
+				FACECF3A142E1E9D00473669 /* KBValueFloat.m in Sources */,
+				FACECF3B142E1E9D00473669 /* KBValueInteger.m in Sources */,
+				FACECF3C142E1E9D00473669 /* KBValueNull.m in Sources */,
+				FACECF3D142E1E9D00473669 /* KBValueString.m in Sources */,
+				FACECF3E142E1E9D00473669 /* NSObject+KeyedBits.m in Sources */,
+				FACECF3F142E1E9D00473669 /* NSNumber+SInt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
