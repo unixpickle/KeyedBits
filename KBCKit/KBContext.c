@@ -60,7 +60,7 @@ void kb_context_append_uint8 (KBContextRef ctx, uint8_t anInt) {
 }
 
 void kb_context_append_uint16 (KBContextRef ctx, uint16_t anInt) {
-	uint16_t little;
+	uint16_t little = anInt;
 	if (_KBContextIsBigEndian()) {
 		char * buffer = (char *)&little;
 		const char * source = (const char *)&anInt;

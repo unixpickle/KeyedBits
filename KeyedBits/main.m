@@ -32,6 +32,7 @@ int main (int argc, const char * argv[]) {
 	TestArray();
 	TestDictionary();
 	TestCDictionary();
+	TestCLargeData();
 	Benchmark();
 	
 	[pool drain];
@@ -128,8 +129,10 @@ void TestCDictionary (void) {
 void TestCLargeData (void) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	NSMutableData * data = [[NSMutableData alloc] init];
-	for (int i = 0; i < 5000000; i++) {
-		[data appendBytes:&i length:1];
+	srand((int)time(NULL));
+	for (int i = 0; i < 9000000; i++) {
+		UInt8 r = (UInt8)rand();
+		[data appendBytes:&r length:1];
 	}
 	NSDictionary * dictionary = [NSDictionary dictionaryWithObject:data forKey:@"BigData"];
 	NSData * encoded = kb_encode_full(dictionary);
