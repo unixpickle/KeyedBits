@@ -153,7 +153,8 @@ void Benchmark (void) {
 		NSLog(@"Failed to read benchmark file.");
 		return;
 	}
-	NSDictionary * benchmark = [benchmarkString JSONValue];
+	
+	NSArray * benchmark = [benchmarkString JSONValue];
 	[benchmarkString release];
 	
 	if (!benchmark) {
@@ -169,7 +170,7 @@ void Benchmark (void) {
 	for (int i = 0; i < 200; i++) {
 		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 		NSString * encoded = [benchmark JSONRepresentation];
-		NSDictionary * decoded = [encoded JSONValue];
+		NSArray * decoded = [encoded JSONValue];
 		if (!decoded) {
 			NSLog(@"Decode/encode of benchmark failed.");
 			[pool drain];
@@ -185,13 +186,17 @@ void Benchmark (void) {
 	for (int i = 0; i < 200; i++) {
 		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 		NSData * encoded = kb_encode_full(benchmark);
-		NSDictionary * decoded = (NSDictionary *)kb_decode_full(encoded);
+		NSArray * decoded = (NSArray *)kb_decode_full(encoded);
 		if (!decoded) {
 			NSLog(@"Decode/encode of benchmark failed.");
 			[pool drain];
 			return;
 		}
 		keyedBitsSize = [encoded length];
+		if (![decoded isEqualToArray:benchmark]) {
+			NSLog(@"No can has equal");
+		}
+		NSCAssert([decoded isEqualToArray:benchmark], @"Must decode to equal value.");
 		[pool drain];
 	}
 	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
