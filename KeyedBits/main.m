@@ -20,6 +20,7 @@ void TestFloating (void);
 void TestDictionary (void);
 void TestCDictionary (void);
 void TestCLargeData (void);
+void TestCFileEncode (void);
 void Benchmark (void);
 
 int main (int argc, const char * argv[]) {
@@ -33,6 +34,7 @@ int main (int argc, const char * argv[]) {
 	TestDictionary();
 	TestCDictionary();
 	TestCLargeData();
+	TestCFileEncode();
 	Benchmark();
 	
 	[pool drain];
@@ -142,6 +144,27 @@ void TestCLargeData (void) {
 	[pool drain];
 }
 
+void TestCFileEncode (void) {
+	NSArray * encodeArray = [NSArray arrayWithObjects:@"Hello", [NSNumber numberWithInt:1337], @"World", nil];
+	NSString * filename = [NSString stringWithFormat:@"KBTest%d.tmp", (int)time(NULL)];
+	NSString * tempFile = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
+	
+	[[NSFileManager defaultManager] createFileAtPath:tempFile contents:[NSData data]
+										  attributes:[NSDictionary dictionary]];
+	
+	int filedesc = open([tempFile UTF8String], O_RDWR);
+	kb_encode_full_fd(encodeArray, filedesc);
+	lseek(filedesc, 0, SEEK_SET);
+	NSArray * decoded = (NSArray *)kb_decode_full_fd(filedesc);
+	close(filedesc);
+	
+	[[NSFileManager defaultManager] removeItemAtPath:tempFile
+											   error:nil];
+	
+	NSLog(@"Decoded from file: %@", decoded);
+	NSCAssert([decoded isEqualToArray:encodeArray], @"Decoded array not equal to encode array");
+}
+
 void Benchmark (void) {
 	NSData * benchmarkFile = [NSData dataWithContentsOfFile:@"./benchmark.json"];
 	if (!benchmarkFile) {
@@ -201,6 +224,6 @@ void Benchmark (void) {
 	}
 	NSLog(@"Benchmark complete: %lf", [[NSDate date] timeIntervalSinceDate:start]);
 	
-	NSLog(@"KeyedBits size: %ld", keyedBitsSize);
-	NSLog(@"JSON size: %ld", jsonSize);
+	NSLog(@"KeyedBits size: %ld", (long)keyedBitsSize);
+	NSLog(@"JSON size: %ld", (long)jsonSize);
 }

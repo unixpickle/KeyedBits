@@ -94,6 +94,17 @@ NSData * kb_encode_full (NSObject * anObject) {
 	return data;
 }
 
+BOOL kb_encode_full_fd (NSObject * anObject, int filedesc) {
+	KBContextRef ctx = kb_context_create_file(filedesc);
+	kb_encode_objc_object(ctx, anObject);
+	if (ctx->fdesc < 0) {
+		kb_context_free(ctx);
+		return NO;
+	}
+	kb_context_free(ctx);
+	return YES;
+}
+
 // Numbers
 
 static bool _kb_encode_objc_number_is_integer (NSNumber * number) {
@@ -125,6 +136,11 @@ static bool _kb_encode_objc_number_is_integer (NSNumber * number) {
 }
 
 static int32_t _kb_encode_objc_number_sint32 (NSNumber * number) {
+#if __WORDSIZE == 64
+	return [number intValue];
+#elif __WORDSIZE == 32
+	return [number intValue];
+#else
 	if (sizeof(int) == sizeof(int32_t)) {
 		return (int32_t)[number intValue];
 	} else if (sizeof(long) == sizeof(int32_t)) {
@@ -137,9 +153,15 @@ static int32_t _kb_encode_objc_number_sint32 (NSNumber * number) {
 		NSLog(@"Warning, no suitable type found.");
 		return 0;
 	}
+#endif
 }
 
 static int64_t _kb_encode_objc_number_sint64 (NSNumber * number) {
+#if __WORDSIZE == 64
+	return [number longValue];
+#elif __WORDSIZE == 32
+	return [number longLongValue];
+#else
 	if (sizeof(int) == sizeof(int64_t)) {
 		return (int64_t)[number intValue];
 	} else if (sizeof(long) == sizeof(int64_t)) {
@@ -152,4 +174,5 @@ static int64_t _kb_encode_objc_number_sint64 (NSNumber * number) {
 		NSLog(@"Warning, no suitable type found.");
 		return 0;
 	}
+#endif
 }

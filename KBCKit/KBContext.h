@@ -14,9 +14,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 struct KBContext {
 	char * buffer;
+	int fdesc; // A NULL buffer indicates the use of this
 	size_t usedLength;
 	size_t allocLength;
 	size_t bufferSize;
@@ -27,6 +29,7 @@ typedef struct KBContext *KBContextRef;
 KBContextRef kb_context_create (void);
 KBContextRef kb_context_create_buffer (size_t buffer);
 KBContextRef kb_context_create_data (const void * bufferData, size_t length);
+KBContextRef kb_context_create_file (int fd);
 
 // writing
 void kb_context_append_bytes (KBContextRef ctx, const void * bytes, size_t length);

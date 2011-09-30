@@ -20,3 +20,4 @@ NSNull * kb_decode_objc_null (KBContextRef ctx, uint8_t type);
 NSData * kb_decode_objc_data (KBContextRef ctx, uint8_t type);
 
 NSObject * kb_decode_full (NSData * data);
+NSObject * kb_decode_full_fd (int filedesc);

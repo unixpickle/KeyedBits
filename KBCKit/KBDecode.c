@@ -119,9 +119,9 @@ static bool _kb_decode_read_value (KBContextRef ctx, uint8_t type, char ** buffe
 		if (!kb_context_read_uint(ctx, &length, lenLength)) {
 			return false;
 		}
-		*buffer = (char *)malloc(length);
-		*buffLen = length;
-		if (!kb_context_read_bytes(ctx, *buffer, length)) {
+		*buffer = (char *)malloc((size_t)length);
+		*buffLen = (size_t)length;
+		if (!kb_context_read_bytes(ctx, *buffer, (size_t)length)) {
 			free(*buffer);
 			return false;
 		}

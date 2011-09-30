@@ -9,6 +9,8 @@
 #include "KBContext.h"
 
 static int _KBContextIsBigEndian ();
+static void _kb_context_socket_write (KBContextRef ctx, const void * bytes, size_t length);
+static bool _kb_context_socket_read (KBContextRef ctx, void * destination, size_t length);
 
 KBContextRef kb_context_create (void) {
 	KBContextRef ctx = (KBContextRef)malloc(sizeof(struct KBContext));
@@ -38,9 +40,23 @@ KBContextRef kb_context_create_data (const void * bufferData, size_t length) {
 	return ctx;
 }
 
+KBContextRef kb_context_create_file (int fd) {
+	KBContextRef ctx = (KBContextRef)malloc(sizeof(struct KBContext));
+	ctx->bufferSize = 512;
+	ctx->buffer = NULL;
+	ctx->fdesc = fd;
+	ctx->usedLength = 0;
+	ctx->allocLength = 0;
+	return ctx;
+}
+
 // Writing
 
 void kb_context_append_bytes (KBContextRef ctx, const void * bytes, size_t length) {
+	if (!ctx->buffer) {
+		_kb_context_socket_write(ctx, bytes, length);
+		return;
+	}
 	if (ctx->bufferSize == 0) return;
 	if (ctx->usedLength + length > ctx->allocLength) {
 		size_t totalSize = ctx->usedLength + length;
@@ -75,10 +91,9 @@ void kb_context_append_uint24 (KBContextRef ctx, uint32_t anInt) {
 	if (_KBContextIsBigEndian()) {
 		char * buffer = (char *)&little;
 		const char * source = (const char *)&anInt;
-		int i;
-		for (i = 0; i < 4; i++) {
-			buffer[i] = source[3 - i];
-		}
+		buffer[2] = source[0];
+		buffer[1] = source[1];
+		buffer[0] = source[2];
 	}
 	kb_context_append_bytes(ctx, &little, 3);
 }
@@ -88,10 +103,10 @@ void kb_context_append_uint32 (KBContextRef ctx, uint32_t anInt) {
 	if (_KBContextIsBigEndian()) {
 		char * buffer = (char *)&little;
 		const char * source = (const char *)&anInt;
-		int i;
-		for (i = 0; i < 4; i++) {
-			buffer[i] = source[3 - i];
-		}
+		buffer[0] = source[3];
+		buffer[1] = source[2];
+		buffer[2] = source[1];
+		buffer[3] = source[0];
 	}
 	kb_context_append_bytes(ctx, &little, 4);
 }
@@ -101,10 +116,14 @@ void kb_context_append_uint64 (KBContextRef ctx, uint64_t anInt) {
 	if (_KBContextIsBigEndian()) {
 		char * buffer = (char *)&little;
 		const char * source = (const char *)&anInt;
-		int i;
-		for (i = 0; i < 8; i++) {
-			buffer[i] = source[7 - i];
-		}
+		buffer[0] = source[7];
+		buffer[1] = source[6];
+		buffer[2] = source[5];
+		buffer[3] = source[4];
+		buffer[4] = source[3];
+		buffer[5] = source[2];
+		buffer[6] = source[1];
+		buffer[7] = source[0];
 	}
 	kb_context_append_bytes(ctx, &little, 8);
 }
@@ -112,6 +131,9 @@ void kb_context_append_uint64 (KBContextRef ctx, uint64_t anInt) {
 // Reading
 
 bool kb_context_read_bytes (KBContextRef ctx, void * destination, size_t length) {
+	if (ctx->buffer == NULL) {
+		return _kb_context_socket_read(ctx, destination, length);
+	}
 	if (length + ctx->usedLength > ctx->allocLength) {
 		return false;
 	}
@@ -257,15 +279,57 @@ bool kb_context_read_int (KBContextRef ctx, int64_t * dest, size_t intLen) {
 // Freeing
 
 void kb_context_free (KBContextRef ctx) {
-	if (ctx->bufferSize) free(ctx->buffer);
+	if (ctx->bufferSize && ctx->buffer != NULL) free(ctx->buffer);
 	free(ctx);
 }
 
 // Private
 
 static int _KBContextIsBigEndian () {
-	uint32_t myInt = 1;
-	char * buffer = (char *)&myInt;
-	if (buffer[0] == 1) return 0;
-	return 1;
+	static bool hasFound = false;
+	static int answer = 0;
+	if (!hasFound) {
+		uint32_t myInt = 1;
+		char * buffer = (char *)&myInt;
+		if (buffer[0] == 1) answer = 0;
+		else answer = 1;
+		hasFound = true;
+	}
+	return answer;
+}
+
+static void _kb_context_socket_write (KBContextRef ctx, const void * bytes, size_t length) {
+	if (ctx->fdesc < 0) return;
+	size_t written = 0;
+	while (written < length) {
+		size_t toWrite = length - written;
+		if (toWrite > ctx->bufferSize) {
+			toWrite = ctx->bufferSize;
+		}
+		ssize_t wrote = write(ctx->fdesc, &bytes[written], toWrite);
+		if (wrote <= 0) {
+			ctx->fdesc = -1;
+			return;
+		}
+		written += wrote;
+	}
+}
+
+static bool _kb_context_socket_read (KBContextRef ctx, void * _destination, size_t length) {
+	if (ctx->fdesc < 0) return false;
+	char * destination = (char *)_destination;
+	size_t bytesRead = 0;
+	while (bytesRead < length) {
+		size_t toRead = ctx->bufferSize;
+		if (toRead > length - bytesRead) {
+			toRead = length - bytesRead;
+		}
+		ssize_t justRead = read(ctx->fdesc, &destination[bytesRead], toRead);
+		if (justRead <= 0) {
+			ctx->fdesc = -1;
+			return false;
+		}
+		bytesRead = justRead;
+	}
+	return true;
 }

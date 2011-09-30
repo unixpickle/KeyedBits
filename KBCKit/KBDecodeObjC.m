@@ -122,6 +122,12 @@ NSNumber * kb_decode_objc_integer (KBContextRef ctx, uint8_t type) {
 	if (!kb_decode_integer(ctx, type, &number)) {
 		return nil;
 	}
+	
+#if __WORDSIZE == 64
+	return [NSNumber numberWithLong:number];
+#elif __WORDSIZE == 32
+	return [NSNumber numberWithLongLong:number];
+#else
 	if (sizeof(int) == sizeof(int64_t)) {
 		return [NSNumber numberWithInt:(int)number];
 	} else if (sizeof(long) == sizeof(int64_t)) {
@@ -132,6 +138,7 @@ NSNumber * kb_decode_objc_integer (KBContextRef ctx, uint8_t type) {
 		NSLog(@"Warning, no suitable type found.");
 		return nil;
 	}
+#endif
 }
 
 NSNumber * kb_decode_objc_double (KBContextRef ctx, uint8_t type) {
@@ -157,6 +164,13 @@ NSData * kb_decode_objc_data (KBContextRef ctx, uint8_t type) {
 
 NSObject * kb_decode_full (NSData * data) {
 	KBContextRef ctx = kb_context_create_data([data bytes], [data length]);
+	NSObject * root = kb_decode_objc_type_object(ctx);
+	kb_context_free(ctx);
+	return root;
+}
+
+NSObject * kb_decode_full_fd (int filedesc) {
+	KBContextRef ctx = kb_context_create_file(filedesc);
 	NSObject * root = kb_decode_objc_type_object(ctx);
 	kb_context_free(ctx);
 	return root;

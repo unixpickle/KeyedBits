@@ -18,3 +18,4 @@ void kb_encode_objc_data (KBContextRef ctx, NSData * data);
 void kb_encode_objc_null (KBContextRef ctx, NSNull * null);
 
 NSData * kb_encode_full (NSObject * anObject);
+BOOL kb_encode_full_fd (NSObject * anObject, int filedesc);
