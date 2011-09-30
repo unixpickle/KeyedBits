@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +26,11 @@ public class MainClass {
 		testData();
 		testArrays();
 		testDictionary();
+		try {
+			testFileOutput();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println("All tests succeeded.");
 	}
 	
@@ -200,6 +209,29 @@ public class MainClass {
 		if (!deepCompareDict(decoded, map)) {
 			throw new TestFailedException("Decoded map is un-equal to original");
 		}
+	}
+	
+	public static void testFileOutput () throws IOException {
+		ArrayList<Object> testArray = new ArrayList<Object>();
+		testArray.add("Test string");
+		testArray.add(new Integer(1337));
+		testArray.add("Another string");
+		
+		File temp = File.createTempFile("outputfile", ".kb");
+	    temp.deleteOnExit();
+	    
+	    FileOutputStream stream = new FileOutputStream(temp);
+	    ValueEncoder.encodeRootObjectToStream(testArray, stream);
+	    stream.close();
+	    
+	    FileInputStream input = new FileInputStream(temp);
+	    Object dec = ValueDecoder.decodeRootObjectFromStream(input);
+	    input.close();
+	    
+	    System.out.println("Decoded array from file: " + testArray);
+	    if (!dec.equals(testArray)) {
+	    	throw new TestFailedException("Decoded array from file differs from original.");
+	    }
 	}
 	
 	public static boolean deepCompareDict (Map<String, Object> map1, Map<String, Object> map2) {

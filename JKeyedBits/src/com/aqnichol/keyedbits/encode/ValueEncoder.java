@@ -1,5 +1,7 @@
 package com.aqnichol.keyedbits.encode;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,6 +26,17 @@ public class ValueEncoder {
 		ValueEncoder enc = new ValueEncoder(writer);
 		enc.encodeObject(object);
 		return stream.getBytes();
+	}
+	
+	public static void encodeRootObjectToStream (Object object, OutputStream stream) throws IOException {
+		try {
+			FileEncodeStream encStream = new FileEncodeStream(stream);
+			EncodeStreamWriter writer = new EncodeStreamWriter(encStream);
+			ValueEncoder enc = new ValueEncoder(writer);
+			enc.encodeObject(object);
+		} catch (EncodeStreamWriteError e) {
+			throw e.getOriginalException();
+		}
 	}
 	
 	public ValueEncoder (EncodeStreamWriter stream) {

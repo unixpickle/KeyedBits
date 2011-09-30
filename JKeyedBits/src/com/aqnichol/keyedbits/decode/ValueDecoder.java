@@ -1,5 +1,8 @@
 package com.aqnichol.keyedbits.decode;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import com.aqnichol.keyedbits.value.ArrayValue;
 import com.aqnichol.keyedbits.value.DataValue;
 import com.aqnichol.keyedbits.value.DoubleValue;
@@ -20,6 +23,18 @@ public class ValueDecoder {
 		ValueDecoder enc = new ValueDecoder(reader);
 		Object object = enc.decodeNextValue().getObject();
 		return object;
+	}
+	
+	public static Object decodeRootObjectFromStream (InputStream stream) throws IOException {
+		try {
+			FileDecodeStream decStream = new FileDecodeStream(stream);
+			DecodeStreamReader reader = new DecodeStreamReader(decStream);
+			ValueDecoder enc = new ValueDecoder(reader);
+			Object object = enc.decodeNextValue().getObject();
+			return object;
+		} catch (DecodeStreamReadError e) {
+			throw e.getOriginalException();
+		}
 	}
 	
 	public ValueDecoder (DecodeStreamReader stream) {
