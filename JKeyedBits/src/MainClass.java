@@ -238,12 +238,10 @@ public class MainClass {
 		Set<String> keys = map1.keySet();
 		Set<String> keys1 = map2.keySet();
 		if (keys.size() != keys1.size()) {
-			System.out.println("Dickhead101");
 			return false;
 		}
 		for (String key : keys) {
 			if (!keys1.contains(key)) {
-				System.out.println("No can haz key: " + key);
 				return false;
 			}
 		}
@@ -275,22 +273,18 @@ public class MainClass {
 	@SuppressWarnings("unchecked")
 	public static boolean deepCompareObjects (Object o1, Object o2) {
 		if (!o1.getClass().isInstance(o2)) {
-			System.out.println("NO can haz equals class");
 			return false;
 		}
 		if (o1 instanceof Map && o2 instanceof Map) {
 			if (!deepCompareDict((Map<String, Object>)o1, (Map<String, Object>)o2)) {
-				System.out.println("NO can haz equals");
 				return false;
 			}
 		} else if (o1 instanceof ArrayList && o2 instanceof ArrayList) {
 			if (!deepCompareArray((ArrayList<Object>)o1, (ArrayList<Object>)o2)) {
-				System.out.println("NO can has equals");
 				return false;
 			}
 		} else {
 			if (!o1.equals(o2)) {
-				System.out.println("NO can haz equals()");
 				return false;
 			}
 		}
