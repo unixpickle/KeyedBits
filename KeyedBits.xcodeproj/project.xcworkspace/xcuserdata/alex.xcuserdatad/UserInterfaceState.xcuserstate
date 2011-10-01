@@ -8078,7 +8078,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339107404.907839</real>
+		<real>339121941.377958</real>
 		<string>{2314, 967}</string>
 		<string>{2835, 0}</string>
 		<dict>
@@ -8743,9 +8743,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339104893.66719103</real>
-		<string>{928, 1130}</string>
-		<string>{7649, 0}</string>
+		<real>339121944.15065801</real>
+		<string>{5282, 1084}</string>
+		<string>{5826, 71}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -9266,7 +9266,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339119648.41566902</real>
+		<real>339121938.69663203</real>
 		<string>{226, 842}</string>
 		<string>{755, 0}</string>
 		<dict>
@@ -9873,8 +9873,8 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{0, 1198}</string>
-		<real>339106344.85174</real>
+		<string>{5591, 1018}</string>
+		<real>339121980.73990399</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10570,11 +10570,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>828</integer>
+					<integer>829</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>829</integer>
+					<integer>830</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -10607,7 +10607,7 @@
 				<integer>820</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KeyedBits/main.m</string>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBContext.c</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10625,7 +10625,7 @@
 				<integer>822</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBConst.h</string>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBDecode.c</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10643,7 +10643,7 @@
 				<integer>824</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBEncodeObjC.h</string>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KeyedBits/main.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10661,7 +10661,25 @@
 				<integer>826</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBDecode.c</string>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBConst.h</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>27</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>828</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBEncodeObjC.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10710,7 +10728,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>830</integer>
+				<integer>832</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBEncodeObjC.m</string>
@@ -10728,28 +10746,10 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>832</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/LibKBCKit/LibKBCKit-Prefix.pch</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>27</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
 				<integer>834</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBContext.c</string>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/LibKBCKit/LibKBCKit-Prefix.pch</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10933,7 +10933,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1072</integer>
+					<integer>1071</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -10953,7 +10953,7 @@
 		<string>IDEWorkspaceTabControllerDesignAreaSplitView</string>
 		<string>IDEShowUtilities</string>
 		<string>AssistantEditorsLayout</string>
-		<string>main.m</string>
+		<string>KBContext.c</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11524,7 +11524,7 @@
 		<string>DocumentNavigableItemName</string>
 		<string>DocumentExtensionIdentifier</string>
 		<string>DocumentURL</string>
-		<string>public.objective-c-source</string>
+		<string>public.c-source</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11534,7 +11534,7 @@
 			<key>DocumentLocation</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>919</integer>
+				<integer>920</integer>
 			</dict>
 			<key>DomainIdentifier</key>
 			<dict>
@@ -11571,7 +11571,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>917</integer>
+					<integer>918</integer>
 				</dict>
 			</array>
 		</dict>
@@ -11587,7 +11587,7 @@
 				<integer>914</integer>
 			</dict>
 		</dict>
-		<string>main.m</string>
+		<string>KBContext.c</string>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -11606,9 +11606,10 @@
 			<key>Identifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>803</integer>
+				<integer>917</integer>
 			</dict>
 		</dict>
+		<string>KBCKit</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11618,7 +11619,7 @@
 			<key>Identifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>918</integer>
+				<integer>919</integer>
 			</dict>
 		</dict>
 		<string>KeyedBits</string>
@@ -11631,22 +11632,13 @@
 			<key>documentURL</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>920</integer>
+				<integer>428</integer>
 			</dict>
 			<key>timestamp</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-		</dict>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>26</integer>
-			</dict>
-			<key>NS.string</key>
-			<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KeyedBits/main.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -11711,10 +11703,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339119648.41994798</real>
-		<string>{226, 842}</string>
-		<string>{755, 0}</string>
-		<string>main()</string>
+		<real>339121980.76122898</real>
+		<string>{5282, 1129}</string>
+		<string>{5826, 71}</string>
+		<string>kb_context_read_uint()</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -11733,7 +11725,7 @@
 				<integer>930</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KeyedBits/main.m</string>
+		<string>file://localhost/Users/alex/xCode/KeyedBits/KeyedBits/KBCKit/KBContext.c</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11918,7 +11910,7 @@
 			<key>DocumentLocation</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>919</integer>
+				<integer>920</integer>
 			</dict>
 			<key>DomainIdentifier</key>
 			<dict>
@@ -11979,7 +11971,7 @@
 			<key>Identifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>803</integer>
+				<integer>917</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -12217,7 +12209,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1064</integer>
+					<integer>1063</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12991,7 +12983,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>803</integer>
+					<integer>917</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13030,15 +13022,15 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1059</integer>
+					<integer>1058</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1060</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1061</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1062</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13130,15 +13122,14 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1057</integer>
+					<integer>917</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1058</integer>
+					<integer>1057</integer>
 				</dict>
 			</array>
 		</dict>
-		<string>KBCKit</string>
 		<string>ObjC</string>
 		<dict>
 			<key>$class</key>
@@ -13154,7 +13145,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1060</integer>
+					<integer>1059</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13173,7 +13164,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1057</integer>
+					<integer>917</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13191,11 +13182,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1060</integer>
+					<integer>1059</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1063</integer>
+					<integer>1062</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13210,6 +13201,10 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+					<integer>1064</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
 					<integer>1065</integer>
 				</dict>
 				<dict>
@@ -13220,20 +13215,16 @@
 					<key>CF$UID</key>
 					<integer>1067</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1068</integer>
-				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1069</integer>
+					<integer>1068</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1070</integer>
+					<integer>1069</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13241,7 +13232,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1071</integer>
+					<integer>1070</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13285,7 +13276,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1073</integer>
+					<integer>1072</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13299,15 +13290,15 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1074</integer>
+					<integer>1073</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1076</integer>
+					<integer>1075</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1078</integer>
+					<integer>1077</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13336,7 +13327,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1075</integer>
+					<integer>1074</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13366,7 +13357,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1077</integer>
+					<integer>1076</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13392,11 +13383,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1079</integer>
+					<integer>1078</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1080</integer>
+					<integer>1079</integer>
 				</dict>
 			</array>
 		</dict>

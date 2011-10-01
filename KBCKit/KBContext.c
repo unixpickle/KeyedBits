@@ -215,7 +215,7 @@ bool kb_context_read_uint64 (KBContextRef ctx, uint64_t * anInt) {
 bool kb_context_read_uint (KBContextRef ctx, uint64_t * dest, size_t intLen) {
 	if (intLen == 1) {
 		uint8_t small = 0;
-		if (!kb_context_read_uint8(ctx, &small)) {
+		if (kb_context_read_uint8(ctx, &small)) {
 			*dest = (uint64_t)small;
 			return true;
 		}
