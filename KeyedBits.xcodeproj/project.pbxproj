@@ -39,6 +39,12 @@
 		FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF48142E36BB00473669 /* KBEncodeObjC.m */; };
 		FACECF4D142E578A00473669 /* KBDecode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4C142E578A00473669 /* KBDecode.c */; };
 		FACECF50142E5CCF00473669 /* KBDecodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */; };
+		FAEDCAD514365DBA004F8C87 /* KBEncodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF48142E36BB00473669 /* KBEncodeObjC.m */; };
+		FAEDCAD614365DBA004F8C87 /* KBDecodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */; };
+		FAEDCAD714365DBA004F8C87 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF42142E2C5800473669 /* KBContext.c */; };
+		FAEDCAD814365DBA004F8C87 /* KBEncode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF44142E300F00473669 /* KBEncode.c */; };
+		FAEDCAD914365DBA004F8C87 /* KBDecode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4C142E578A00473669 /* KBDecode.c */; };
+		FAEDCADB14365DC7004F8C87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEDCADA14365DC7004F8C87 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,6 +135,13 @@
 		FACECF4C142E578A00473669 /* KBDecode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBDecode.c; sourceTree = "<group>"; };
 		FACECF4E142E5CCF00473669 /* KBDecodeObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDecodeObjC.h; sourceTree = "<group>"; };
 		FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDecodeObjC.m; sourceTree = "<group>"; };
+		FAEDCAB714365D2A004F8C87 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		FAEDCABA14365D2A004F8C87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FAEDCABB14365D2A004F8C87 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FAEDCABC14365D2A004F8C87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAEDCACA14365D79004F8C87 /* LibKBCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = LibKBCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAEDCACE14365D79004F8C87 /* LibKBCKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibKBCKit-Prefix.pch"; sourceTree = "<group>"; };
+		FAEDCADA14365DC7004F8C87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +150,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA803B49142BE3E80078B1D9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAEDCAC714365D79004F8C87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEDCADB14365DC7004F8C87 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,10 +199,12 @@
 		FA803B39142BE3E80078B1D9 = {
 			isa = PBXGroup;
 			children = (
+				FAEDCADA14365DC7004F8C87 /* Foundation.framework */,
 				FACECF40142E2B4D00473669 /* KBCKit */,
 				FACECF1C142E1E9D00473669 /* KBKit */,
 				FA27AE72142D51DA005B2D27 /* JSON */,
 				FA803B4A142BE3E80078B1D9 /* KeyedBits */,
+				FAEDCACC14365D79004F8C87 /* LibKBCKit */,
 				FA803B47142BE3E80078B1D9 /* Frameworks */,
 				FA803B45142BE3E80078B1D9 /* Products */,
 			);
@@ -191,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				FA803B44142BE3E80078B1D9 /* KeyedBits */,
+				FAEDCACA14365D79004F8C87 /* LibKBCKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				FA803B48142BE3E80078B1D9 /* Foundation.framework */,
+				FAEDCAB714365D2A004F8C87 /* Cocoa.framework */,
+				FAEDCAB914365D2A004F8C87 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -293,7 +319,43 @@
 			name = ObjC;
 			sourceTree = "<group>";
 		};
+		FAEDCAB914365D2A004F8C87 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAEDCABA14365D2A004F8C87 /* AppKit.framework */,
+				FAEDCABB14365D2A004F8C87 /* CoreData.framework */,
+				FAEDCABC14365D2A004F8C87 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		FAEDCACC14365D79004F8C87 /* LibKBCKit */ = {
+			isa = PBXGroup;
+			children = (
+				FAEDCACD14365D79004F8C87 /* Supporting Files */,
+			);
+			path = LibKBCKit;
+			sourceTree = "<group>";
+		};
+		FAEDCACD14365D79004F8C87 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAEDCACE14365D79004F8C87 /* LibKBCKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FAEDCAC814365D79004F8C87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		FA803B43142BE3E80078B1D9 /* KeyedBits */ = {
@@ -314,6 +376,23 @@
 			productReference = FA803B44142BE3E80078B1D9 /* KeyedBits */;
 			productType = "com.apple.product-type.tool";
 		};
+		FAEDCAC914365D79004F8C87 /* LibKBCKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAEDCAD214365D79004F8C87 /* Build configuration list for PBXNativeTarget "LibKBCKit" */;
+			buildPhases = (
+				FAEDCAC614365D79004F8C87 /* Sources */,
+				FAEDCAC714365D79004F8C87 /* Frameworks */,
+				FAEDCAC814365D79004F8C87 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LibKBCKit;
+			productName = LibKBCKit;
+			productReference = FAEDCACA14365D79004F8C87 /* LibKBCKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -332,6 +411,7 @@
 			projectRoot = "";
 			targets = (
 				FA803B43142BE3E80078B1D9 /* KeyedBits */,
+				FAEDCAC914365D79004F8C87 /* LibKBCKit */,
 			);
 		};
 /* End PBXProject section */
@@ -370,6 +450,18 @@
 				FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */,
 				FACECF4D142E578A00473669 /* KBDecode.c in Sources */,
 				FACECF50142E5CCF00473669 /* KBDecodeObjC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAEDCAC614365D79004F8C87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEDCAD514365DBA004F8C87 /* KBEncodeObjC.m in Sources */,
+				FAEDCAD614365DBA004F8C87 /* KBDecodeObjC.m in Sources */,
+				FAEDCAD714365DBA004F8C87 /* KBContext.c in Sources */,
+				FAEDCAD814365DBA004F8C87 /* KBEncode.c in Sources */,
+				FAEDCAD914365DBA004F8C87 /* KBDecode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +533,26 @@
 			};
 			name = Release;
 		};
+		FAEDCAD314365D79004F8C87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LibKBCKit/LibKBCKit-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FAEDCAD414365D79004F8C87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LibKBCKit/LibKBCKit-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -461,6 +573,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FAEDCAD214365D79004F8C87 /* Build configuration list for PBXNativeTarget "LibKBCKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAEDCAD314365D79004F8C87 /* Debug */,
+				FAEDCAD414365D79004F8C87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

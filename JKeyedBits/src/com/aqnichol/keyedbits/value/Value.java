@@ -63,7 +63,7 @@ public abstract class Value {
 	}
 	
 	public int getTypeLengthFieldLength () {
-		int number = (int)((type >> 5) & 7);
+		int number = (int)((type >> 5) & 3);
 		return number + 1;
 	}
 	

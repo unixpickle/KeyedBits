@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'LibKBCKit' target in the 'LibKBCKit' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
