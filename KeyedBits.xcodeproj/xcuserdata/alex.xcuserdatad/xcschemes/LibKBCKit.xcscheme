@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FAEDCAC914365D79004F8C87"
-               BuildableName = "libLibKBCKit.a"
+               BuildableName = "LibKBCKit.a"
                BlueprintName = "LibKBCKit"
                ReferencedContainer = "container:KeyedBits.xcodeproj">
             </BuildableReference>

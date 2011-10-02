@@ -15,6 +15,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <errno.h>
 
 struct KBContext {
 	char * buffer;

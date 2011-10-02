@@ -308,10 +308,13 @@ static void _kb_context_socket_write (KBContextRef ctx, const void * bytes, size
 		}
 		ssize_t wrote = write(ctx->fdesc, &bytes[written], toWrite);
 		if (wrote <= 0) {
-			ctx->fdesc = -1;
-			return;
+			if (errno != EINTR) {
+				ctx->fdesc = -1;
+				return;
+			}
+		} else {
+			written += wrote;
 		}
-		written += wrote;
 	}
 }
 
@@ -326,10 +329,13 @@ static bool _kb_context_socket_read (KBContextRef ctx, void * _destination, size
 		}
 		ssize_t justRead = read(ctx->fdesc, &destination[bytesRead], toRead);
 		if (justRead <= 0) {
-			ctx->fdesc = -1;
-			return false;
+			if (errno != EINTR) {
+				ctx->fdesc = -1;
+				return false;
+			}
+		} else {
+			bytesRead = justRead;
 		}
-		bytesRead = justRead;
 	}
 	return true;
 }
