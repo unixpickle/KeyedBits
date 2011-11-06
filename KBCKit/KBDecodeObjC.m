@@ -46,20 +46,28 @@ NSArray * kb_decode_objc_array (KBContextRef ctx, uint8_t type) {
 		uint8_t typeNum = 0;
 		// read an type, then the object.
 		if (!kb_decode_read_type(ctx, &typeSub, &typeNum)) {
+#if !__has_feature(objc_arc)
 			[array release];
+#endif
 			return nil;
 		}
 		if (typeSub == 0) break;
 		NSObject * nextObject = kb_decode_objc_object(ctx, typeSub);
 		if (!nextObject) {
+#if !__has_feature(objc_arc)
 			[array release];
+#endif
 			return nil;
 		}
 		[array addObject:nextObject];
 	}
 	// If I were to create an immutable array enclosing this, it
 	// would take a few more milliseconds... no thanks.
+#if !__has_feature(objc_arc)
 	return [array autorelease];
+#else
+	return array;
+#endif
 }
 
 NSDictionary * kb_decode_objc_dictionary (KBContextRef ctx, uint8_t type) {
@@ -69,7 +77,9 @@ NSDictionary * kb_decode_objc_dictionary (KBContextRef ctx, uint8_t type) {
 		uint8_t typeNum = 0;
 		char * keyStr = NULL;
 		if (!kb_decode_dictionary_key(ctx, type, &keyStr)) {
+#if !__has_feature(objc_arc)
 			[dictionary release];
+#endif
 			return nil;
 		}
 		if (!keyStr) break;
@@ -79,27 +89,39 @@ NSDictionary * kb_decode_objc_dictionary (KBContextRef ctx, uint8_t type) {
 													 freeWhenDone:YES];
 		if (!objKey) {
 			free(keyStr);
+#if !__has_feature(objc_arc)
 			[dictionary release];
+#endif
 			return nil;
 		}
 		// read an type, then the object.
 		if (!kb_decode_read_type(ctx, &type, &typeNum)) {
+#if !__has_feature(objc_arc)
 			[objKey release];
 			[dictionary release];
+#endif
 			return nil;
 		}
 		NSObject * nextObject = kb_decode_objc_object(ctx, type);
 		if (!nextObject) {
+#if !__has_feature(objc_arc)
 			[objKey release];
 			[dictionary release];
+#endif
 			return nil;
 		}
 		[dictionary setObject:nextObject forKey:objKey];
+#if !__has_feature(objc_arc)
 		[objKey release];
+#endif
 	}
 	// If I were to create an immutable dictionary enclosing this, it
 	// would take a few more milliseconds... no thanks.
+#if !__has_feature(objc_arc)
 	return [dictionary autorelease];
+#else
+	return dictionary;
+#endif
 }
 
 NSString * kb_decode_objc_string (KBContextRef ctx, uint8_t type) {
@@ -114,7 +136,11 @@ NSString * kb_decode_objc_string (KBContextRef ctx, uint8_t type) {
 	if (!string) {
 		free(buffer);
 	}
+#if !__has_feature(objc_arc)
 	return [string autorelease];
+#else
+	return string;
+#endif
 }
 
 NSNumber * kb_decode_objc_integer (KBContextRef ctx, uint8_t type) {
