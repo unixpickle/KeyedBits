@@ -20,8 +20,12 @@ public class ValueDecoder {
 	public static Object decodeRootObject (byte[] data) {
 		ByteDecodeStream stream = new ByteDecodeStream(data);
 		DecodeStreamReader reader = new DecodeStreamReader(stream);
-		ValueDecoder enc = new ValueDecoder(reader);
-		Object object = enc.decodeNextValue().getObject();
+		ValueDecoder dec = new ValueDecoder(reader);
+		Value value = dec.decodeNextValue();
+		if (value == null) {
+			throw new UnmatchedTypeException("Stream contained NULL terminator object.");
+		}
+		Object object = value.getObject();
 		return object;
 	}
 	
@@ -29,8 +33,12 @@ public class ValueDecoder {
 		try {
 			FileDecodeStream decStream = new FileDecodeStream(stream);
 			DecodeStreamReader reader = new DecodeStreamReader(decStream);
-			ValueDecoder enc = new ValueDecoder(reader);
-			Object object = enc.decodeNextValue().getObject();
+			ValueDecoder dec = new ValueDecoder(reader);
+			Value value = dec.decodeNextValue();
+			if (value == null) {
+				throw new UnmatchedTypeException("Stream contained NULL terminator object.");
+			}
+			Object object = value.getObject();
 			return object;
 		} catch (DecodeStreamReadError e) {
 			throw e.getOriginalException();
