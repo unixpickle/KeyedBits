@@ -334,7 +334,7 @@ static bool _kb_context_socket_read (KBContextRef ctx, void * _destination, size
 				return false;
 			}
 		} else {
-			bytesRead = justRead;
+			bytesRead += justRead;
 		}
 	}
 	return true;
