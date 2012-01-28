@@ -39,12 +39,10 @@ class Hash
 	private
 
 	def Hash.writeKey(stream, keyName)
-		i = 0
-		keyName.each_byte do |byte|
+		keyName.bytes.with_index do |byte, index|
 			cleanByte = (byte & 128) != 0 ? byte ^ 128 : byte
-			cleanByte |= 128 if i == keyName.bytesize - 1
+			cleanByte |= 128 if index == keyName.bytesize - 1
 			stream.putc(cleanByte)
-			i = i + 1
 		end
 	end
 
