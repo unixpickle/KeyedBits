@@ -31,7 +31,7 @@ module KeyedBits
 	
 		def to_s
 			buff = "<"
-			bytes = unpack('U' * length).collect {|x| x.to_s(16)}
+			bytes = unpack('C' * length).collect {|x| x.to_s(16)}
 			for i in (0..(bytes.length - 1))
 				if i % 4 == 0 && i > 0
 					buff << " "
