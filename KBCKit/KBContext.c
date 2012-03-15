@@ -8,7 +8,7 @@
 
 #include "KBContext.h"
 
-static int _KBContextIsBigEndian ();
+static int _KBContextIsBigEndian (void);
 static void _kb_context_socket_write (KBContextRef ctx, const void * bytes, size_t length);
 static bool _kb_context_socket_read (KBContextRef ctx, void * destination, size_t length);
 
@@ -285,7 +285,7 @@ void kb_context_free (KBContextRef ctx) {
 
 // Private
 
-static int _KBContextIsBigEndian () {
+static int _KBContextIsBigEndian (void) {
 	static bool hasFound = false;
 	static int answer = 0;
 	if (!hasFound) {
@@ -306,7 +306,7 @@ static void _kb_context_socket_write (KBContextRef ctx, const void * bytes, size
 		if (toWrite > ctx->bufferSize) {
 			toWrite = ctx->bufferSize;
 		}
-		ssize_t wrote = write(ctx->fdesc, &bytes[written], toWrite);
+		ssize_t wrote = write(ctx->fdesc, &((const char *)bytes)[written], toWrite);
 		if (wrote <= 0) {
 			if (errno != EINTR) {
 				ctx->fdesc = -1;
