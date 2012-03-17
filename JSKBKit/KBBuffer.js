@@ -6,6 +6,7 @@ KBBuffer = function (buffer) {
 	}
 	if (typeof buffer == "number" || buffer == undefined) {
 		this.length = 0;
+		this.offset = 0;
 		this.array = new Uint8Array(this.buffer);
 	} else {
 		this.buffer = 0;
@@ -16,25 +17,29 @@ KBBuffer = function (buffer) {
 }
 
 KBBuffer.prototype.write = function (num) {
-	if (this.buffer == 0) return null;
+	if (this.buffer <= 0) return false;
 
 	if (typeof num == 'number') {
 		// treat as byte
-		if (this.length + 1 == this.array.length) {
+		if (this.offset >= this.array.length) {
 			var arrCopy = new Uint8Array(this.array.length + this.buffer);
-			for (var i = 0; i < this.length; i++) {
+			for (var i = 0; i < this.offset; i++) {
 				arrCopy[i] = this.array[i];
 			}
 			this.array = arrCopy;
 		}
-		this.array[this.length] = num;
-		this.length += 1;
+		this.array[this.offset] = num;
+		this.offset++;
+		if (this.offset > this.length) {
+			this.length = this.offset;
+		}
 	} else {
 		// treat as array
 		for (var i = 0; i < num.length; i++) {
-			this.write(num[i]);
+			if (!this.write(num[i])) return false;
 		}
 	}
+	return true;
 }
 
 KBBuffer.prototype.write_uint = function (num, len) {
@@ -44,13 +49,14 @@ KBBuffer.prototype.write_uint = function (num, len) {
 		bytes[i] = numb & 255;
 		numb >>= 8;
 	}
-	this.write(bytes);
+	return this.write(bytes);
 }
 
 /** READING **/
 
 KBBuffer.prototype.read = function (size) {
-	if (this.buffer != 0) return null;
+	if (this.buffer > 0) return null;
+
 	if (typeof size != 'number') {
 		if (this.offset < this.length) {
 			var v = this.array[this.offset];
