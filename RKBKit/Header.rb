@@ -12,7 +12,7 @@ module KeyedBits
 	end
 
 	class Header
-		TypeTerminator = 0
+	  TypeTerminator = 0
 		TypeString = 1
 		TypeArray = 2
 		TypeDictionary = 3
