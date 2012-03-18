@@ -28,7 +28,7 @@ KBBuffer.prototype.write = function (obj) {
 	if (this.buffer <= 0) return false;
 
 	if (typeof obj == 'number') {
-		// treat as byte
+		// append a single byte
 		if (this.offset >= this.array.length) {
 			var arrCopy = new Uint8Array(this.array.length + this.buffer);
 			for (var i = 0; i < this.offset; i++) {
@@ -41,13 +41,33 @@ KBBuffer.prototype.write = function (obj) {
 		if (this.offset > this.length) {
 			this.length = this.offset;
 		}
+	} else if (typeof obj == 'string') {
+		// append the string
+		for (var i = 0; i < obj.length; i++) {
+			if (!this.write(obj.charCodeAt(i))) return false;
+		}
 	} else {
-		// treat as array
+		// append an array of bytes
 		for (var i = 0; i < obj.length; i++) {
 			if (!this.write(obj[i])) return false;
 		}
 	}
 	return true;
+}
+
+KBBuffer.prototype.write_buffer = function (buffer) {
+	buffer.offset = 0;
+	this.write(buffer.read(buffer.length));
+}
+
+KBBuffer.prototype.write_key = function (str) {
+	for (var i = 0; i < str.length; i++) {
+		var c = str.charCodeAt(i);
+		if (i + 1 == str.length) {
+			c |= 128;
+		}
+		this.write(c);
+	}
 }
 
 KBBuffer.prototype.write_uint = function (num, len) {
@@ -102,6 +122,23 @@ KBBuffer.prototype.read = function (size) {
 		return buff;
 	}
 	return null;
+}
+
+KBBuffer.prototype.read_key = function () {
+	var str = "";
+	while (true) {
+		var c = this.read();
+		if (c == null) return null;
+		if (c == 0) return null;
+		if ((c & 128) == 128) {
+			c ^= 128;
+			str = str + String.fromCharCode(c);
+			break;
+		} else {
+			str = str + String.fromCharCode(c);
+		}
+	}
+	return str;
 }
 
 KBBuffer.prototype.read_uint = function (size) {
