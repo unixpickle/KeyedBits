@@ -25,7 +25,9 @@ public class FileDecodeStream extends DecodeStream {
 			} catch (IOException e) {
 				throw new DecodeStreamReadError("Failed to read from input stream.", e);
 			}
-			if (read < 0) return null;
+			if (read < 0) {
+				throw new DecodeStreamReadError("Failed to read from input stream.", null);
+			}
 			hasBytes += read;
 		}
 		return bytes;
