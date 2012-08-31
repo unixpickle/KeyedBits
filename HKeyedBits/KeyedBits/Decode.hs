@@ -10,13 +10,22 @@ import qualified Data.ByteString as BSS
 import Data.Char
 import Data.Bits
 import Data.Int
+import Control.Exception
+import Data.Typeable
+
+data DecodeException = BufferUnderflow deriving (Show)
+
+instance Typeable DecodeException where
+    typeOf _ = typeOf (undefined :: DecodeException)
+
+instance Exception DecodeException
 
 lazyToStrict :: BS.ByteString -> BSS.ByteString
 lazyToStrict x = BSS.pack $ BS.unpack x
 
 decode :: BS.ByteString -> (KBO.KBObject, BS.ByteString)
 decode b
-    | BS.length b == 0 = (KBO.KBEmpty, BS.empty)
+    | BS.length b == 0 = throw BufferUnderflow
     | t == KBH.HeaderString = readString head body
     | t == KBH.HeaderInteger = readInt head body
     | t == KBH.HeaderNULL = readNull head body
@@ -61,22 +70,23 @@ readFloat _ b = (KBO.KBFloat num, remaining)
           str = map (chr . fromIntegral) $ BS.unpack bytes
 
 readArray :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readArray _ b = cycleArray $ decode b
+readArray t b
+    | BS.length b == 0 = throw BufferUnderflow
+    | isTermed         = (KBO.KBEmpty, remaining)
+    | otherwise        = let (nextObj, left) = readArray t remaining
+                         in (KBO.KBArray obj nextObj, left)
+    where (obj, remaining) = decode b
+          isTermed = obj == KBO.KBEmpty
 
 readDictionary :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
 readDictionary t x
-    | BS.length x == 0 = (KBO.KBEmpty, BS.empty)
-    | isTermed == True = (KBO.KBEmpty, remaining)
+    | BS.length x == 0 = throw BufferUnderflow
+    | isTermed         = (KBO.KBEmpty, remaining)
     | otherwise        = let (obj, trimmed) = decode remaining
                              (nextDict, buf) = readDictionary t trimmed
                          in (KBO.KBHash key obj nextDict, buf)
     where (key, remaining) = dictKey x
           isTermed = (length key == 0)
-
-cycleArray :: (KBO.KBObject, BS.ByteString) -> (KBO.KBObject, BS.ByteString)
-cycleArray all@(KBO.KBEmpty, x) = all
-cycleArray (k, x) = (KBO.KBArray k nextData, buf)
-    where (nextData, buf) = readArray (KBH.Header KBH.HeaderArray 0 False) x
 
 dictKey :: BS.ByteString -> (String, BS.ByteString)
 dictKey b
