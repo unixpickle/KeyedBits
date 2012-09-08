@@ -12,7 +12,7 @@ main = do
         obj2 = [KB.KBNull, KB.KBString "atest", KB.KBData [1,2,3]]
         obj = KB.packArray $ hash : (obj1 ++ obj2)
         encoded = KBE.encode obj
-    withBinaryFile "/Users/alex/Desktop/test.txt" WriteMode (flip hPut encoded)
+    withBinaryFile "test.txt" WriteMode (flip hPut encoded)
     let str = "test"
         enc = KBE.encode obj
         dec = KBD.runDecodeState KBD.readObject enc
