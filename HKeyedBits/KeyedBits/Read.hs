@@ -1,4 +1,4 @@
-module KeyedBits.Decode (
+module KeyedBits.Read (
     readObject
 ) where
 
