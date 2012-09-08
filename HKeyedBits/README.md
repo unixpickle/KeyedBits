@@ -38,7 +38,7 @@ HKeyedBits also makes it possible to decode a KeyedBits object directly from a `
 
 The `KeyedBits.Read` module facilitates `Handle` decoding, exporting a single `readObject` function. This function's type is as follows:
 
-    readObject :: Handle -> KBObject
+    readObject :: Handle -> IO KBObject
 
 This function behaves in the same way as the `readObject` function from `KeyedBits.Decode`, except that there is no residual data to be returned. In the case of a decode error, an exception will be thrown.
 
