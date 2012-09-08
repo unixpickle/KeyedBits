@@ -106,7 +106,6 @@ readNULLTerminated s h = do
 ensureGet :: Int -> Handle -> IO BS.ByteString
 ensureGet n h = do
     b <- BS.hGet h n
-    putStrLn "got buffer"
     if BS.null b || BS.length b /= fromIntegral n
     then throwIO BufferUnderflowException
     else return b
