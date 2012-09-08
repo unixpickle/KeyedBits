@@ -1,13 +1,12 @@
 module KeyedBits.Encode (
-    encode,
-    header
+    encode
 ) where
 
 import qualified KeyedBits.Object as KBO
 import qualified KeyedBits.Header as KBH
 import qualified KeyedBits.Integer as KBI
 
-import qualified Data.ByteString as BS
+import qualified Data.ByteString.Lazy as BS
 import Data.Char
 import Data.Bits
 import Data.Word
@@ -43,7 +42,7 @@ encode obj@(KBO.KBFloat f) = buffer
 encode obj@(KBO.KBArray x xs) = BS.cons (headByte obj) $ encodeArr obj
 encode obj@(KBO.KBHash k v n) = BS.cons (headByte obj) $ encodeDict obj
 encode obj@(KBO.KBData b) = BS.cons (headByte obj) $ body
-    where lenbytes = KBI.encodeWord (length b) $ KBI.minLenWord $ length b
+    where lenbytes = KBI.encodeWord (KBI.minLenWord $ length b) $ length b
           body = BS.append lenbytes $ BS.pack b
 
 encodeArr :: KBO.KBObject -> BS.ByteString

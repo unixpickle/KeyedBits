@@ -7,30 +7,23 @@ module KeyedBits.Integer (
     minLenWord
 ) where
 
-import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as Lazy
+import qualified Data.ByteString.Lazy as BS
 import qualified Data.Binary as Binary
 import Data.Word
 import Data.Int
 
-flipLazyToStrict :: Lazy.ByteString -> BS.ByteString
-flipLazyToStrict x = BS.pack $ reverse $ Lazy.unpack x
-
-flipStrictToLazy :: BS.ByteString -> Lazy.ByteString
-flipStrictToLazy x = Lazy.pack $ reverse $ BS.unpack x
-
 encodeWord24 :: (Integral a) => a -> BS.ByteString
-encodeWord24 x = BS.take 3 $ flipLazyToStrict $ Binary.encode (fromIntegral x :: Word32)
+encodeWord24 x = BS.take 3 $ Binary.encode (fromIntegral x :: Word32)
 
 decodeWord24 :: BS.ByteString -> Int
 decodeWord24 x = fromIntegral word :: Int
-    where word = (Binary.decode $ Lazy.cons 0 $ flipStrictToLazy x) :: Word32
+    where word = (Binary.decode $ BS.cons 0 x) :: Word32
 
 encode :: (Binary.Binary a) => a -> BS.ByteString
-encode = flipLazyToStrict . Binary.encode
+encode = Binary.encode
 
 decode :: (Binary.Binary a) => BS.ByteString -> a
-decode = Binary.decode . flipStrictToLazy
+decode = Binary.decode
 
 encodeWord :: (Integral a, Integral b) => a -> b -> BS.ByteString
 encodeWord l n

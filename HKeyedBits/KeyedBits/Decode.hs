@@ -1,100 +1,118 @@
 module KeyedBits.Decode (
-    decode
+    runDecodeState,
+    readObject
 ) where
 
 import qualified KeyedBits.Integer as KBI
 import qualified KeyedBits.Object as KBO
 import qualified KeyedBits.Header as KBH
+
 import qualified Data.ByteString.Lazy as BS
-import qualified Data.ByteString as BSS
 import Data.Char
 import Data.Bits
 import Data.Int
-import Control.Exception
-import Data.Typeable
+import Control.Monad
+import Control.Applicative
 
-data DecodeException = BufferUnderflow deriving (Show)
+newtype DecodeState s a = DecodeState { runDecodeState :: s -> (a, s) }
 
-instance Typeable DecodeException where
-    typeOf _ = typeOf (undefined :: DecodeException)
+instance Monad (DecodeState s) where
+    return o = DecodeState $ (\x -> (o, x))
+    a >>= b = DecodeState $ \x ->
+        let all@(v, s) = runDecodeState a x
+        in runDecodeState (b v) s
 
-instance Exception DecodeException
+instance Functor (DecodeState s) where
+    fmap f s = DecodeState $ \x ->
+        let (v, n) = runDecodeState s x
+        in (f v, n)
 
-lazyToStrict :: BS.ByteString -> BSS.ByteString
-lazyToStrict x = BSS.pack $ BS.unpack x
+instance Applicative (DecodeState s) where
+    pure = return
+    (<*>) = ap
 
-decode :: BS.ByteString -> (KBO.KBObject, BS.ByteString)
-decode b
-    | BS.length b == 0 = throw BufferUnderflow
-    | t == KBH.HeaderString = readString head body
-    | t == KBH.HeaderInteger = readInt head body
-    | t == KBH.HeaderNULL = readNull head body
-    | t == KBH.HeaderArray = readArray head body
-    | t == KBH.HeaderDictionary = readDictionary head body
-    | t == KBH.HeaderData = readData head body
-    | t == KBH.HeaderFloat = KeyedBits.Decode.readFloat head body
-    | otherwise            = (KBO.KBEmpty, body)
-    where head = KBH.fromByte $ BS.index b 0
-          body = BS.drop 1 b
-          t    = KBH.headerType head
+readObject :: DecodeState BS.ByteString KBO.KBObject
+readObject = do
+    byte <- ensureGet 1 >>= (\x -> return $ BS.index x 0)
+    let head = KBH.fromByte byte
+        t = KBH.headerType head
+    case t of
+        KBH.HeaderTerminator -> return KBO.KBEmpty
+        KBH.HeaderString -> readString head
+        KBH.HeaderInteger -> readInt head
+        KBH.HeaderNULL -> readNull head
+        KBH.HeaderArray -> readArray head
+        KBH.HeaderDictionary -> readHash head
+        KBH.HeaderData -> readData head
+        KBH.HeaderFloat -> KeyedBits.Decode.readFloat head
 
-readString :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readString _ b = (KBO.KBString str, remaining)
-    where bytes = BS.takeWhile (/= 0) b
-          remaining = BS.drop ((BS.length bytes) + 1) b
-          str = map (chr . fromIntegral) $ BS.unpack bytes
+readString :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readString _ = do
+    bytes <- readNULLTerminated BS.empty
+    let str = map (chr . fromIntegral) $ BS.unpack bytes
+    return $ KBO.KBString str
 
-readInt :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readInt (KBH.Header _ l _) b = (KBO.KBInt number, BS.drop length b)
-    where length = if l > 1 then 8 else 4
-          bytes = BS.take length b
-          number = KBI.decodeInt $ lazyToStrict bytes
+readInt :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readInt (KBH.Header _ l _) = do
+    let len = if l > 1 then 8 else 4
+    bytes <- ensureGet len
+    let number = KBI.decodeInt bytes
+    return $ KBO.KBInt number
 
-readNull :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readNull _ b = (KBO.KBNull, b)
+readNull :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readNull _ = return KBO.KBNull
 
-readData :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readData (KBH.Header _ l _) b = (KBO.KBData $ BS.unpack contents, left)
-    where lenLen = (fromIntegral l) :: Int64
-          bytes = BS.take (lenLen + 1) b
-          length = KBI.decodeWord $ lazyToStrict bytes
-          remaining = BS.drop (lenLen + 1) b
-          (contents, left) = BS.splitAt (fromIntegral length) remaining
-          
+readData :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readData (KBH.Header _ l _) = do
+    let lenLen = fromIntegral l
+    bytes <- ensureGet (lenLen + 1)
+    let dataLen = KBI.decodeWord bytes
+    contents <- ensureGet (fromIntegral dataLen)
+    return $ KBO.KBData $ BS.unpack contents
 
-readFloat :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readFloat _ b = (KBO.KBFloat num, remaining)
-    where num = read str :: Float
-          bytes = BS.takeWhile (/= 0) b
-          remaining = BS.drop ((BS.length bytes) + 1) b
-          str = map (chr . fromIntegral) $ BS.unpack bytes
+readFloat :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readFloat _ = do
+    bytes <- readNULLTerminated BS.empty
+    let str = map (chr . fromIntegral) $ BS.unpack bytes
+        num = read str :: Float
+    return $ KBO.KBFloat num
 
-readArray :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readArray t b
-    | BS.length b == 0 = throw BufferUnderflow
-    | isTermed         = (KBO.KBEmpty, remaining)
-    | otherwise        = let (nextObj, left) = readArray t remaining
-                         in (KBO.KBArray obj nextObj, left)
-    where (obj, remaining) = decode b
-          isTermed = obj == KBO.KBEmpty
+readArray :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readArray t = do
+    obj <- readObject
+    if obj == KBO.KBEmpty then return obj
+    else do nextObj <- readArray t
+            return $ KBO.KBArray obj nextObj
 
-readDictionary :: KBH.Header -> BS.ByteString -> (KBO.KBObject, BS.ByteString)
-readDictionary t x
-    | BS.length x == 0 = throw BufferUnderflow
-    | isTermed         = (KBO.KBEmpty, remaining)
-    | otherwise        = let (obj, trimmed) = decode remaining
-                             (nextDict, buf) = readDictionary t trimmed
-                         in (KBO.KBHash key obj nextDict, buf)
-    where (key, remaining) = dictKey x
-          isTermed = (length key == 0)
+readHash :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
+readHash t = do
+        key <- dictKey
+        if length key == 0 then return KBO.KBEmpty
+        else do
+            obj <- readObject
+            nextObj <- readHash t
+            return $ KBO.KBHash key obj nextObj
 
-dictKey :: BS.ByteString -> (String, BS.ByteString)
-dictKey b
-    | BS.length b == 0 = ([], b)
-    | clean == 0       = ([], BS.drop 1 b)
-    | clean /= byte    = ([letter], BS.drop 1 b)
-    | otherwise        = let (next, buff) = dictKey $ BS.drop 1 b
-                         in ((letter:next), buff)
-    where byte = (fromIntegral $ BS.index b 0) :: Int
-          clean = if byte .&. 0x80 == 0 then byte else byte `xor` 0x80
-          letter = chr clean
+dictKey :: DecodeState BS.ByteString String
+dictKey = do
+    buffer <- ensureGet 1
+    let byte = BS.index buffer 0
+        clean = if byte .&. 0x80 == 0 then byte else byte `xor` 0x80
+        letter = chr $ fromIntegral clean
+    if byte == 0 || byte /= clean
+    then let next = if byte /= clean then [letter] else []
+         in return next
+    else do next <- dictKey
+            return (letter:next)
+
+readNULLTerminated :: BS.ByteString -> DecodeState BS.ByteString BS.ByteString
+readNULLTerminated s = do
+    byte <- ensureGet 1 >>= (\x -> return $ BS.index x 0)
+    if byte == 0 then return s
+    else let buff = s `BS.append` (BS.singleton byte)
+         in readNULLTerminated buff
+
+ensureGet :: Int -> DecodeState BS.ByteString BS.ByteString
+ensureGet n = DecodeState $ \bs ->
+    if BS.length bs < fromIntegral n then error "Buffer underflow"
+    else BS.splitAt (fromIntegral n) bs
