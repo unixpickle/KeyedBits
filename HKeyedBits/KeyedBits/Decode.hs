@@ -1,7 +1,11 @@
 module KeyedBits.Decode (
     runDecodeState,
-    readObject
+    readObject,
+    DecodeException(..)
 ) where
+
+import Control.Exception
+import Data.Typeable
 
 import qualified KeyedBits.Integer as KBI
 import qualified KeyedBits.Object as KBO
@@ -13,6 +17,9 @@ import Data.Bits
 import Data.Int
 import Control.Monad
 import Control.Applicative
+
+data DecodeException = BufferUnderflowException deriving (Show, Typeable)
+instance Exception DecodeException
 
 newtype DecodeState s a = DecodeState { runDecodeState :: s -> (a, s) }
 
@@ -114,5 +121,5 @@ readNULLTerminated s = do
 
 ensureGet :: Int -> DecodeState BS.ByteString BS.ByteString
 ensureGet n = DecodeState $ \bs ->
-    if BS.length bs < fromIntegral n then error "Buffer underflow"
+    if BS.length bs < fromIntegral n then throw BufferUnderflowException
     else BS.splitAt (fromIntegral n) bs

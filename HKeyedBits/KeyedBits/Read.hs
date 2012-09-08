@@ -1,6 +1,10 @@
 module KeyedBits.Read (
-    readObject
+    readObject,
+    ReadException(..)
 ) where
+
+import Control.Exception
+import Data.Typeable
 
 import qualified KeyedBits.Integer as KBI
 import qualified KeyedBits.Object as KBO
@@ -12,10 +16,15 @@ import Data.Char
 import Data.Bits
 import Data.Int
 import System.IO
+import System.IO.Error
+
+data ReadException = BufferUnderflowException deriving (Show, Typeable)
+instance Exception ReadException
 
 readObject :: Handle -> IO KBO.KBObject
 readObject h = do
     byte <- ensureGet 1 h >>= (\x -> return $ BS.index x 0)
+    putStrLn "got byte"
     let head = KBH.fromByte byte
         t = KBH.headerType head
     case t of
@@ -26,7 +35,7 @@ readObject h = do
         KBH.HeaderArray -> readArray head h
         KBH.HeaderDictionary -> readHash head h
         KBH.HeaderData -> readData head h
-        KBH.HeaderFloat -> KeyedBits.Decode.readFloat head h
+        KBH.HeaderFloat -> KeyedBits.Read.readFloat head h
 
 readString :: KBH.Header -> Handle -> IO KBO.KBObject
 readString _ h = do
@@ -97,6 +106,7 @@ readNULLTerminated s h = do
 ensureGet :: Int -> Handle -> IO BS.ByteString
 ensureGet n h = do
     b <- BS.hGet h n
+    putStrLn "got buffer"
     if BS.null b || BS.length b /= fromIntegral n
-    then return $ error "Reached EOF prematurely"
+    then throwIO BufferUnderflowException
     else return b
