@@ -24,7 +24,6 @@ instance Exception ReadException
 readObject :: Handle -> IO KBO.KBObject
 readObject h = do
     byte <- ensureGet 1 h >>= (\x -> return $ BS.index x 0)
-    putStrLn "got byte"
     let head = KBH.fromByte byte
         t = KBH.headerType head
     case t of
