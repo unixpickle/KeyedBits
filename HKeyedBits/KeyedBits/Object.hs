@@ -3,28 +3,32 @@ module KeyedBits.Object (
     packHash,
     packArray,
     unpackHash,
-    unpackArray
+    unpackArray,
+    unpackString,
+    unpackInt,
+    unpackFloat,
+    unpackData
 ) where
 
 import Data.Word
 
-data KBObject = KBString String | KBInt Int | KBFloat Float | KBArray KBObject KBObject | KBHash String KBObject KBObject | KBData [Word8] | KBNull | KBEmpty deriving (Show, Eq)
+data KBObject = KBString String | KBInt Int | KBFloat Float | KBArray KBObject KBObject | KBHash String KBObject KBObject | KBData [Word8] | KBNull | KBEmptyArray | KBEmptyHash deriving (Show, Eq)
 
 packHash :: [(String, KBObject)] -> KBObject
-packHash [] = KBEmpty
+packHash [] = KBEmptyHash
 packHash ((x,y):xs) = KBHash x y $ packHash xs
 
 packArray :: [KBObject] -> KBObject
-packArray [] = KBEmpty
+packArray [] = KBEmptyArray
 packArray (x:xs) = KBArray x $ packArray xs
 
 unpackHash :: KBObject -> Maybe [(String, KBObject)]
-unpackHash KBEmpty = Just []
+unpackHash KBEmptyHash = Just []
 unpackHash (KBHash k v n) = unpackHash n >>= (\x -> Just $ (k, v):x)
 unpackHash _ = Nothing
 
 unpackArray :: KBObject -> Maybe [KBObject]
-unpackArray KBEmpty = Just []
+unpackArray KBEmptyArray = Just []
 unpackArray (KBArray v n) = unpackArray n >>= (\x -> Just $ v:x)
 unpackArray _ = Nothing
 
@@ -45,5 +49,6 @@ unpackData (KBData b) = Just b
 unpackData _ = Nothing
 
 isEmpty :: KBObject -> Bool
-isEmpty KBEmpty = True
+isEmpty KBEmptyArray = True
+isEmpty KBEmptyHash = True
 isEmpty _ = False

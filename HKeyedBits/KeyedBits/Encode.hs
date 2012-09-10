@@ -28,7 +28,8 @@ headByte :: KBO.KBObject -> Word8
 headByte = KBH.toByte . header
 
 encode :: KBO.KBObject -> BS.ByteString
-encode obj@(KBO.KBEmpty) = BS.singleton $ headByte obj
+encode obj@(KBO.KBEmptyArray) = BS.singleton 0
+encode obj@(KBO.KBEmptyHash) = BS.singleton 0
 encode obj@(KBO.KBNull) = BS.singleton $ headByte obj
 encode obj@(KBO.KBString s) = buffer
     where str = map (fromIntegral . ord) s

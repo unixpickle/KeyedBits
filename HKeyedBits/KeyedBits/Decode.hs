@@ -44,7 +44,7 @@ readObject = do
     let head = KBH.fromByte byte
         t = KBH.headerType head
     case t of
-        KBH.HeaderTerminator -> return KBO.KBEmpty
+        KBH.HeaderTerminator -> return KBO.KBEmptyArray
         KBH.HeaderString -> readString head
         KBH.HeaderInteger -> readInt head
         KBH.HeaderNULL -> readNull head
@@ -87,14 +87,14 @@ readFloat _ = do
 readArray :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
 readArray t = do
     obj <- readObject
-    if obj == KBO.KBEmpty then return obj
+    if obj == KBO.KBEmptyArray then return obj
     else do nextObj <- readArray t
             return $ KBO.KBArray obj nextObj
 
 readHash :: KBH.Header -> DecodeState BS.ByteString KBO.KBObject
 readHash t = do
         key <- dictKey
-        if length key == 0 then return KBO.KBEmpty
+        if length key == 0 then return KBO.KBEmptyHash
         else do
             obj <- readObject
             nextObj <- readHash t
