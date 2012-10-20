@@ -13,17 +13,17 @@ import Data.Word
 import Data.Int
 
 encodeWord24 :: (Integral a) => a -> BS.ByteString
-encodeWord24 x = BS.take 3 $ Binary.encode (fromIntegral x :: Word32)
+encodeWord24 x = BS.take 3 $ encode (fromIntegral x :: Word32)
 
 decodeWord24 :: BS.ByteString -> Int
 decodeWord24 x = fromIntegral word :: Int
-    where word = (Binary.decode $ BS.cons 0 x) :: Word32
+    where word = (Binary.decode $ BS.cons 0 $ BS.reverse x) :: Word32
 
 encode :: (Binary.Binary a) => a -> BS.ByteString
-encode = Binary.encode
+encode = BS.reverse . Binary.encode
 
 decode :: (Binary.Binary a) => BS.ByteString -> a
-decode = Binary.decode
+decode = Binary.decode . BS.reverse
 
 encodeWord :: (Integral a, Integral b) => a -> b -> BS.ByteString
 encodeWord l n
