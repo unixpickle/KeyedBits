@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0093F6164887920029CD12 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FA0093F5164887920029CD12 /* KBContext.c */; };
+		FA0093F7164887920029CD12 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FA0093F5164887920029CD12 /* KBContext.c */; };
 		FA27AE8C142D51DA005B2D27 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE74142D51DA005B2D27 /* NSObject+SBJson.m */; };
 		FA27AE8D142D51DA005B2D27 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE77142D51DA005B2D27 /* SBJsonParser.m */; };
 		FA27AE8E142D51DA005B2D27 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA27AE79142D51DA005B2D27 /* SBJsonStreamParser.m */; };
@@ -34,14 +36,12 @@
 		FACECF3D142E1E9D00473669 /* KBValueString.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF2F142E1E9D00473669 /* KBValueString.m */; };
 		FACECF3E142E1E9D00473669 /* NSObject+KeyedBits.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF31142E1E9D00473669 /* NSObject+KeyedBits.m */; };
 		FACECF3F142E1E9D00473669 /* NSNumber+SInt.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF34142E1E9D00473669 /* NSNumber+SInt.m */; };
-		FACECF43142E2C5800473669 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF42142E2C5800473669 /* KBContext.c */; };
 		FACECF45142E300F00473669 /* KBEncode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF44142E300F00473669 /* KBEncode.c */; };
 		FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF48142E36BB00473669 /* KBEncodeObjC.m */; };
 		FACECF4D142E578A00473669 /* KBDecode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4C142E578A00473669 /* KBDecode.c */; };
 		FACECF50142E5CCF00473669 /* KBDecodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */; };
 		FAEDCAD514365DBA004F8C87 /* KBEncodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF48142E36BB00473669 /* KBEncodeObjC.m */; };
 		FAEDCAD614365DBA004F8C87 /* KBDecodeObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4F142E5CCF00473669 /* KBDecodeObjC.m */; };
-		FAEDCAD714365DBA004F8C87 /* KBContext.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF42142E2C5800473669 /* KBContext.c */; };
 		FAEDCAD814365DBA004F8C87 /* KBEncode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF44142E300F00473669 /* KBEncode.c */; };
 		FAEDCAD914365DBA004F8C87 /* KBDecode.c in Sources */ = {isa = PBXBuildFile; fileRef = FACECF4C142E578A00473669 /* KBDecode.c */; };
 		FAEDCADB14365DC7004F8C87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEDCADA14365DC7004F8C87 /* Foundation.framework */; };
@@ -71,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA0093F5164887920029CD12 /* KBContext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBContext.c; sourceTree = "<group>"; };
 		FA27AE73142D51DA005B2D27 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		FA27AE74142D51DA005B2D27 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		FA27AE75142D51DA005B2D27 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		FACECF33142E1E9D00473669 /* NSNumber+SInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SInt.h"; sourceTree = "<group>"; };
 		FACECF34142E1E9D00473669 /* NSNumber+SInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SInt.m"; sourceTree = "<group>"; };
 		FACECF41142E2B7B00473669 /* KBContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBContext.h; sourceTree = "<group>"; };
-		FACECF42142E2C5800473669 /* KBContext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBContext.c; sourceTree = "<group>"; };
 		FACECF44142E300F00473669 /* KBEncode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KBEncode.c; sourceTree = "<group>"; };
 		FACECF46142E301600473669 /* KBEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBEncode.h; sourceTree = "<group>"; };
 		FACECF47142E36BB00473669 /* KBEncodeObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBEncodeObjC.h; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 				FACECF51142E6FF400473669 /* ObjC */,
 				FACECF4B142E560600473669 /* KBConst.h */,
 				FACECF41142E2B7B00473669 /* KBContext.h */,
-				FACECF42142E2C5800473669 /* KBContext.c */,
+				FA0093F5164887920029CD12 /* KBContext.c */,
 				FACECF46142E301600473669 /* KBEncode.h */,
 				FACECF44142E300F00473669 /* KBEncode.c */,
 				FACECF4A142E55FB00473669 /* KBDecode.h */,
@@ -445,11 +445,11 @@
 				FACECF3D142E1E9D00473669 /* KBValueString.m in Sources */,
 				FACECF3E142E1E9D00473669 /* NSObject+KeyedBits.m in Sources */,
 				FACECF3F142E1E9D00473669 /* NSNumber+SInt.m in Sources */,
-				FACECF43142E2C5800473669 /* KBContext.c in Sources */,
 				FACECF45142E300F00473669 /* KBEncode.c in Sources */,
 				FACECF49142E36BB00473669 /* KBEncodeObjC.m in Sources */,
 				FACECF4D142E578A00473669 /* KBDecode.c in Sources */,
 				FACECF50142E5CCF00473669 /* KBDecodeObjC.m in Sources */,
+				FA0093F6164887920029CD12 /* KBContext.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,9 +459,9 @@
 			files = (
 				FAEDCAD514365DBA004F8C87 /* KBEncodeObjC.m in Sources */,
 				FAEDCAD614365DBA004F8C87 /* KBDecodeObjC.m in Sources */,
-				FAEDCAD714365DBA004F8C87 /* KBContext.c in Sources */,
 				FAEDCAD814365DBA004F8C87 /* KBEncode.c in Sources */,
 				FAEDCAD914365DBA004F8C87 /* KBDecode.c in Sources */,
+				FA0093F7164887920029CD12 /* KBContext.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

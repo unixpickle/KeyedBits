@@ -327,12 +327,16 @@ static bool _kb_context_socket_read (KBContextRef ctx, void * _destination, size
 		if (toRead > length - bytesRead) {
 			toRead = length - bytesRead;
 		}
+		errno = 0;
 		ssize_t justRead = read(ctx->fdesc, &destination[bytesRead], toRead);
-		if (justRead <= 0) {
+		if (justRead < 0) {
 			if (errno != EINTR) {
 				ctx->fdesc = -1;
 				return false;
 			}
+		} else if (justRead == 0) {
+			ctx->fdesc = -1;
+			return false;
 		} else {
 			bytesRead += justRead;
 		}
